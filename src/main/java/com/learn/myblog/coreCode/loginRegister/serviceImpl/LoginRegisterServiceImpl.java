@@ -91,15 +91,22 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
 	 * 获取登录用户信息
 	 */
 	public Msg getLoginUserInfo() {
-		String userUuid = SecurityUtils.getSubject().getPrincipal() + "";
-		System.out.println("userUuid--> " + userUuid);
-		User user = userMapper.selectById(userUuid);
+		User user = this.getLoginUser();
 		if (user == null) {
 			return MsgUtils.getFailedMsg();
 		}
 		user.setUserPwd(null);
 		user.setCreateTime(null);
 		return MsgUtils.getSuccessMsg(user);
+	}
+	
+	/**
+	 * 获取登录用户信息
+	 */
+	public User getLoginUser() {
+		String userUuid = SecurityUtils.getSubject().getPrincipal() + "";
+		System.out.println("userUuid--> " + userUuid);
+		return userMapper.selectById(userUuid);
 	}
 
 }

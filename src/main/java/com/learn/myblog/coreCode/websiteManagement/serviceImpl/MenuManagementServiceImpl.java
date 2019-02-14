@@ -35,6 +35,7 @@ public class MenuManagementServiceImpl implements MenuManagementService {
 	 * 
 	 * @return
 	 */
+	@Override
 	public Msg getAllMenu() {
 //		Page<WebsiteManagementMenu> page = new Page<WebsiteManagementMenu>();
 //		websiteManagementMenuMapper.selectPage(page, null);
@@ -53,6 +54,7 @@ public class MenuManagementServiceImpl implements MenuManagementService {
 	 * @param websiteManagementMenu
 	 * @return
 	 */
+	@Override
 	public Msg addMenu(WebsiteManagementMenu websiteManagementMenu) {
 		websiteManagementMenu.setUuid(CommonUtils.getUuid());
 		websiteManagementMenu.setCreateTime(LocalDateTime.now());
@@ -67,16 +69,17 @@ public class MenuManagementServiceImpl implements MenuManagementService {
 	 * @return
 	 */
 	// TODO createTime创建时间不能为null
+	@Override
 	public Msg editMenu(WebsiteManagementMenu websiteManagementMenu) {
-		WebsiteManagementMenu db_websiteManagementMenu = websiteManagementMenuMapper.selectById(websiteManagementMenu.getUuid());
-		if (db_websiteManagementMenu == null) {
+		WebsiteManagementMenu dbWebsiteManagementMenu = websiteManagementMenuMapper.selectById(websiteManagementMenu.getUuid());
+		if (dbWebsiteManagementMenu == null) {
 			return MsgUtils.getFailedMsg("没有找到对应数据。");
 		}
-		db_websiteManagementMenu.setMenuName(websiteManagementMenu.getMenuName());
-		db_websiteManagementMenu.setMenuSort(websiteManagementMenu.getMenuSort());
-		db_websiteManagementMenu.setMenuUrl(websiteManagementMenu.getMenuUrl());
-		db_websiteManagementMenu.setParentMenu(websiteManagementMenu.getParentMenu());
-		int result = websiteManagementMenuMapper.updateById(db_websiteManagementMenu);
+		dbWebsiteManagementMenu.setMenuName(websiteManagementMenu.getMenuName());
+		dbWebsiteManagementMenu.setMenuSort(websiteManagementMenu.getMenuSort());
+		dbWebsiteManagementMenu.setMenuUrl(websiteManagementMenu.getMenuUrl());
+		dbWebsiteManagementMenu.setParentMenu(websiteManagementMenu.getParentMenu());
+		int result = websiteManagementMenuMapper.updateById(dbWebsiteManagementMenu);
 		return result == 0 ? MsgUtils.getFailedMsg() : MsgUtils.getSuccessMsg();
 	}
 
@@ -86,6 +89,7 @@ public class MenuManagementServiceImpl implements MenuManagementService {
 	 * @param uuid
 	 * @return
 	 */
+	@Override
 	public Msg deleteMenu(String uuid) {
 		int result = websiteManagementMenuMapper.deleteById(uuid);
 		return result == 0 ? MsgUtils.getFailedMsg() : MsgUtils.getSuccessMsg();
@@ -97,6 +101,7 @@ public class MenuManagementServiceImpl implements MenuManagementService {
 	 * @param uuid
 	 * @return
 	 */
+	@Override
 	public Msg getMenuById(String uuid) {
 		WebsiteManagementMenu websiteManagementMenu = websiteManagementMenuMapper.selectById(uuid);
 		return websiteManagementMenu == null ? MsgUtils.getFailedMsg("没有找到对应菜单信息") : MsgUtils.getSuccessMsg(websiteManagementMenu);

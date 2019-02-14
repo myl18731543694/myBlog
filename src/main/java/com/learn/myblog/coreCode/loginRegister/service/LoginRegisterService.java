@@ -37,5 +37,12 @@ public interface LoginRegisterService {
 	 * @return
 	 */
 	public Msg getLoginUserInfo();
+	
+	/**
+	 * 获取登录用户信息
+	 * 
+	 * @return
+	 */
+	public User getLoginUser();
 
 }
