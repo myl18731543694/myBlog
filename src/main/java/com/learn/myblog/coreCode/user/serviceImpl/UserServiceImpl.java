@@ -3,7 +3,6 @@
  */
 package com.learn.myblog.coreCode.user.serviceImpl;
 
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import com.learn.myblog.common.bean.UserExtend;
 import com.learn.myblog.common.mapper.UserExtendMapper;
 import com.learn.myblog.common.mapper.UserMapper;
 import com.learn.myblog.common.pojo.Msg;
+import com.learn.myblog.common.utils.CommonUtils;
 import com.learn.myblog.common.utils.Md5Utils;
 import com.learn.myblog.common.utils.MsgUtils;
 import com.learn.myblog.coreCode.loginRegister.service.LoginRegisterService;
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Msg updateInfo(UserExtend userExtend) {
-		String uuid = SecurityUtils.getSubject().getPrincipal() + "";
+		String uuid = CommonUtils.getUserId();
 		userExtend.setUuid(uuid);
 		int result = userExtendMapper.updateById(userExtend);
 		if (result == 0) {
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Msg getUserInfo() {
-		String uuid = SecurityUtils.getSubject().getPrincipal() + "";
+		String uuid = CommonUtils.getUserId();
 		UserExtend userExtend = userExtendMapper.selectById(uuid);
 		if (userExtend == null) {
 			return MsgUtils.getSuccessMsg();

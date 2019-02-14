@@ -2,6 +2,8 @@ package com.learn.myblog.common.utils;
 
 import java.util.UUID;
 
+import org.apache.shiro.SecurityUtils;
+
 /**
  * @ClassName: CommonUtils
  * @Description: 常用方法
@@ -17,6 +19,15 @@ public class CommonUtils {
 	 */
 	public static String getUuid() {
 		return UUID.randomUUID().toString();
+	}
+
+	/**
+	 * 获取 用户id
+	 * 
+	 * @return
+	 */
+	public static String getUserId() {
+		return SecurityUtils.getSubject().getPrincipal() + "";
 	}
 
 }

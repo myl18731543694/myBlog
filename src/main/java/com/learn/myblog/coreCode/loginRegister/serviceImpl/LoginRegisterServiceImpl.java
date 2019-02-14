@@ -104,7 +104,7 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
 	 * 获取登录用户信息
 	 */
 	public User getLoginUser() {
-		String userUuid = SecurityUtils.getSubject().getPrincipal() + "";
+		String userUuid = CommonUtils.getUserId();
 		System.out.println("userUuid--> " + userUuid);
 		return userMapper.selectById(userUuid);
 	}
