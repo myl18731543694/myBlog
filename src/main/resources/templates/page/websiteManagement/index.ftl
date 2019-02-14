@@ -33,7 +33,7 @@
 			success : function(result) {
 				if (result.code == 200) {
 					$("#userName").html(result.data.userName);
-					$("#userEmail").html("邮箱信息");
+					// $("#showUserEmail").html("邮箱信息");
 				}
 			}
 		})
@@ -158,7 +158,7 @@
 			<div id="personInfor">
 				<p id="userName"></p>
 				<p>
-					<span id="userEmail">test@qq.com</span>
+					<!-- <span id="showUserEmail"></span> -->
 				</p>
 				<p>
 					<a href="/loginRegister/logout">退出登录</a>

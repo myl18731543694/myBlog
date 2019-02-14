@@ -3,6 +3,7 @@
  */
 package com.learn.myblog.coreCode.user.service;
 
+import com.learn.myblog.common.bean.UserExtend;
 import com.learn.myblog.common.pojo.Msg;
 
 /**
@@ -21,5 +22,18 @@ public interface UserService {
 	 * @return
 	 */
 	Msg updatePwd(String oldPwd, String newPwd);
+
+	/**
+	 * 修改用户信息
+	 * 
+	 * @param userExtend
+	 * @return
+	 */
+	Msg updateInfo(UserExtend userExtend);
+
+	/**
+	 * @return
+	 */
+	Msg getUserInfo();
 
 }

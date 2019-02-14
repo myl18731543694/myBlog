@@ -3,10 +3,13 @@
  */
 package com.learn.myblog.coreCode.user.serviceImpl;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learn.myblog.common.bean.User;
+import com.learn.myblog.common.bean.UserExtend;
+import com.learn.myblog.common.mapper.UserExtendMapper;
 import com.learn.myblog.common.mapper.UserMapper;
 import com.learn.myblog.common.pojo.Msg;
 import com.learn.myblog.common.utils.Md5Utils;
@@ -27,6 +30,9 @@ public class UserServiceImpl implements UserService {
 	UserMapper userMapper;
 	
 	@Autowired
+	UserExtendMapper userExtendMapper;
+	
+	@Autowired
 	LoginRegisterService loginRegisterService;
 
 	/**
@@ -38,15 +44,52 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Msg updatePwd(String oldPwd, String newPwd) {
+		oldPwd = Md5Utils.encodeMd5(oldPwd);
 		User user = loginRegisterService.getLoginUser();
-		if (!Md5Utils.encodeMd5(oldPwd).equals(user.getUserPwd())) {
-			return MsgUtils.getFailedMsg("密码不正确");
+		if (!user.getUserPwd().equals(oldPwd)) {
+			return MsgUtils.getFailedMsg("密码不正确。");
 		}
 		
 		newPwd = Md5Utils.encodeMd5(newPwd);
+		if (user.getUserPwd().equals(newPwd)) {
+			return MsgUtils.getFailedMsg("新密码不能和旧密码一样。");
+		}
+		
 		user.setUserPwd(newPwd);
 		int result = userMapper.updateById(user);
 		return result > 0 ? MsgUtils.getSuccessMsg() : MsgUtils.getFailedMsg();
+	}
+
+	/**
+	 * 修改用户信息
+	 * 
+	 * @param userExtend
+	 * @return
+	 */
+	@Override
+	public Msg updateInfo(UserExtend userExtend) {
+		String uuid = SecurityUtils.getSubject().getPrincipal() + "";
+		userExtend.setUuid(uuid);
+		int result = userExtendMapper.updateById(userExtend);
+		if (result == 0) {
+			userExtendMapper.insert(userExtend);
+		}
+		return MsgUtils.getSuccessMsg();
+	}
+
+	/**
+	 * 获取用户信息
+	 */
+	@Override
+	public Msg getUserInfo() {
+		String uuid = SecurityUtils.getSubject().getPrincipal() + "";
+		UserExtend userExtend = userExtendMapper.selectById(uuid);
+		if (userExtend == null) {
+			return MsgUtils.getSuccessMsg();
+		}
+		
+		userExtend.setUuid(null);
+		return MsgUtils.getSuccessMsg(userExtend);
 	}
 
 }
