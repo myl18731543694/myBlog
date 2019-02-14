@@ -1,0 +1,44 @@
+# 服务器相关配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    
+
+spring:
+  # 数据库相关配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/myblog?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    
+  # freemarker静态资源配置
+  freemarker:
+    template-loader-path:
+    - classpath:/templates/page    # 关闭缓存，及时刷新，上线生产环境需要修改为true
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+    
+  resources:
+    static-locations:
+    - classpath:/templates/static
+ 
+# mybatis 相关配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  mapper-locations:
+  - classpath:/mapper/*.xml
+  
+# 日志相关
+logging:
+  level:
+    com.learn.myblog: debug
