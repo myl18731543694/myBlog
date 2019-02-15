@@ -91,5 +91,6 @@ public class UserServiceImpl implements UserService {
 		userExtend.setUuid(null);
 		return MsgUtils.getSuccessMsg(userExtend);
 	}
+	
 
 }

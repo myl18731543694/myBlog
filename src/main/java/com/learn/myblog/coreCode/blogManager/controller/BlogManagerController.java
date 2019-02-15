@@ -6,6 +6,7 @@ package com.learn.myblog.coreCode.blogManager.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,7 +70,7 @@ public class BlogManagerController {
 	 */
 	@RequestMapping("/deleteBlog")
 	@ResponseBody
-	public Msg deleteBlog(String uuid) {
+	public Msg deleteBlog(@RequestParam String uuid) {
 		return blogManagerService.deleteBlog(uuid);
 	}
 
@@ -81,7 +82,7 @@ public class BlogManagerController {
 	 */
 	@RequestMapping("/getBlog")
 	@ResponseBody
-	public Msg getBlog(String blogId) {
+	public Msg getBlog(@RequestParam String blogId) {
 		return blogManagerService.getBlog(blogId);
 	}
 
@@ -95,7 +96,8 @@ public class BlogManagerController {
 	 */
 	@RequestMapping("/getBlogList")
 	@ResponseBody
-	public BootStrapTable getBlogList(int currentPage, int pageSize, String search) {
+	public BootStrapTable getBlogList(@RequestParam int currentPage, @RequestParam int pageSize,
+			@RequestParam String search) {
 		return blogManagerService.getBlogList(currentPage, pageSize, search);
 	}
 

@@ -4,7 +4,7 @@
 	<div class="panel-body" style="padding-bottom: 0px;">
 
 		<div class="panel panel-default">
-			<div class="panel-heading">发布博客</div>
+			<div class="panel-heading">修改博客</div>
 			<div class="panel-body">
 				<form id="blogInfoForm" class="form-horizontal">
 					<div class="form-group ">
@@ -24,7 +24,7 @@
 					<div class="form-group">
 						<label for="sOrd" class="col-xs-3 control-label"></label>
 						<button type="button" class="btn btn-default  btn-sm"
-							onclick="addBlog()">发 布</button>
+							onclick="updateBlog()">修改</button>
 					</div>
 				</form>
 			</div>
@@ -33,17 +33,38 @@
 
 </div>
 <script>
-	/**
-	 * 修改用户信息
-	 */
-	function addBlog() {
+	var blogId = "${uuid}";
+
+	$(function() {
 		$.ajax({
-			url : "/blogManager/addBlog",
-			data : $("#blogInfoForm").serialize(),
+			url : "/blogManager/getBlog",
+			data : {
+				blogId : blogId
+			},
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 200) {
-					alert("发布成功");
+					$("#blogTitle").val(result.data.blogTitle);
+					$("#blogContent").val(result.data.blogContent);
+				} else {
+					alert(result.data);
+				}
+
+			}
+		});
+	})
+
+	/**
+	 * 修改用户信息
+	 */
+	function updateBlog() {
+		$.ajax({
+			url : "/blogManager/editBlog",
+			data : $("#blogInfoForm").serialize() + "&uuid=" + blogId,
+			dataType : "json",
+			success : function(result) {
+				if (result.code == 200) {
+					alert("修改成功");
 				} else {
 					alert(result.data);
 				}

@@ -73,4 +73,6 @@ public class UserController {
 	public Msg getUserInfo() {
 		return userService.getUserInfo();
 	}
+	
+	
 }

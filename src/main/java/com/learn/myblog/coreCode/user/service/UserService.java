@@ -32,8 +32,11 @@ public interface UserService {
 	Msg updateInfo(UserExtend userExtend);
 
 	/**
+	 * 获取用户信息
+	 * 
 	 * @return
 	 */
 	Msg getUserInfo();
+
 
 }

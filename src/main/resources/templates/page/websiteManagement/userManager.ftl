@@ -10,7 +10,7 @@
 			<div class="panel-body">
 				<div id="formSearch" class="form-horizontal">
 					<div class="form-group" style="margin-top: 15px">
-						<label class="control-label col-sm-1" for="txt_search">博客标题</label>
+						<label class="control-label col-sm-1" for="txt_search">用户账号</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="txt_search">
 						</div>
@@ -36,7 +36,6 @@
 	}
 
 	$(function() {
-
 		//1.初始化Table
 		var oTable = new TableInit();
 		oTable.Init();
@@ -52,7 +51,7 @@
 		//初始化Table
 		oTableInit.Init = function() {
 			$('#tb_departments').bootstrapTable({
-				url : '/blogManager/getBlogList', //请求后台的URL（*）
+				url : '/userManager/getUserList', //请求后台的URL（*）
 				method : 'get', //请求方式（*）
 				striped : true, //是否显示行间隔色
 				cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -78,17 +77,32 @@
 				cardView : false, //是否显示详细视图
 				detailView : false, //是否显示父子表
 				columns : [{
-					field : 'blogTitle',
-					title : '博客标题'
+					field : 'userName',
+					title : '用户名称'
 				}, {
-					field : 'blogContent',
-					title : '博客正文'
+					field : 'createTime',
+					title : '注册时间'
 				}, {
+					title : '是否锁定',
+					formatter:function(value,row,index){
+						var str;
+						if (row.isLock == 1){
+							str = "锁定";
+						} else {
+							str = "正常用户";
+						}
+						return str;
+					}
+				},  {
 					title : '操作',
 					formatter:function(value,row,index){
-						var str = "<button type=\"button\" onclick=\"updateBlog('"+row.uuid+"')\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span>修改</button>&nbsp;";
-					    str += "<button type=\"button\" onclick=\"deleteBlog('"+row.uuid+"')\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-remove\"></span>删除</button>";
-					    return str;
+						var str;
+						if (row.isLock == 1){
+							str = "<button onclick=\"updateUserLock('"+row.uuid+"', '"+row.userName+"', false)\" type=\"button\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span>解锁</button>&nbsp;";
+						} else {
+							str = "<button onclick=\"updateUserLock('"+row.uuid+"', '"+row.userName+"', true)\" type=\"button\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span>锁定</button>&nbsp;";
+						}
+						return str;
 					}
 				}]
 			});
@@ -121,17 +135,23 @@
 	/**
 	 * 删除博客根据 id
 	 */
-	function deleteBlog(id){
-		if(confirm("确定要删除吗？" + id)){
+	function updateUserLock(id, userName , isLock){
+		var msg = "确定要解锁用户：" + userName + "，允许登录码？";
+		if (isLock){
+			msg = "确定要锁定用户：" + userName + "，禁止登录码？";
+		}
+		
+		if(confirm(msg)){
 			$.ajax({
-				url : "/blogManager/deleteBlog",
+				url : "/userManager/updateUserLock",
 				data : {
-					uuid : id
+					uuid : id,
+					isLock: isLock
 				},
 				dataType : "json",
 				success : function(result) {
 					if (result.code == 200) {
-						alert("删除成功");
+						alert("成功");
 						$("#tb_departments").bootstrapTable('refresh');
 					} else {
 						alert(result.data);
@@ -140,13 +160,6 @@
 				}
 			});
 		}
-	}
-	
-	/**
-	 * 修改博客根据 id
-	 */
-	function updateBlog(id){
-		window.location.href = "/common/html/websiteManagement/updateBlog?uuid=" + id;
 	}
 </script>
 

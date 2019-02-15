@@ -3,6 +3,8 @@
  */
 package com.learn.myblog.common.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,20 @@ public class CommonController {
 	public ModelAndView conmonGotoHtml(HttpServletRequest request) {
 		String path = request.getRequestURI();
 		path = path.substring(12);
-		return new ModelAndView(path);
+		ModelAndView modelAndView = new ModelAndView(path);
+
+		Map<String, String[]> map = request.getParameterMap();
+		for (String item : map.keySet()) {
+			String[] values = map.get(item);
+			if (values.length > 0) {
+				modelAndView.addObject(item, values[0]);
+			} else {
+				modelAndView.addObject(item, "");
+			}
+
+		}
+
+		return modelAndView;
 	}
 
 }

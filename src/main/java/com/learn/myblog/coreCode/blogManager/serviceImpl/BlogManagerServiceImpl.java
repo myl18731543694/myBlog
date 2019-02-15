@@ -66,7 +66,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		}
 		dbBlog.setBlogTitle(blog.getBlogTitle());
 		dbBlog.setBlogContent(blog.getBlogContent());
-		int result = blogMapper.insert(dbBlog);
+		int result = blogMapper.updateById(dbBlog);
 		return result > 0 ? MsgUtils.getSuccessMsg() : MsgUtils.getFailedMsg();
 	}
 
@@ -107,7 +107,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		queryWrapper.eq("uuid", blogId);
 		queryWrapper.ne("isDelete", 1);
 		Blog blog = blogMapper.selectOne(queryWrapper);
-		return blog != null ? MsgUtils.getSuccessMsg(blog) : MsgUtils.getFailedMsg();
+		return blog != null ? MsgUtils.getSuccessMsg(blog) : MsgUtils.getFailedMsg("没有找到对应博客，可能已经被删除。");
 	}
 
 	/**
