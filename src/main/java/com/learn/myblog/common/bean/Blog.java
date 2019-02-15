@@ -30,6 +30,9 @@ public class Blog {
 	// 博客正文
 	private String blogContent;
 	
+	// 博客简介
+	private String blogIntro;
+	
 	// 是否删除 1：删除
 	private int isDelete;
 

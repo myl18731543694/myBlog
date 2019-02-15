@@ -66,6 +66,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		}
 		dbBlog.setBlogTitle(blog.getBlogTitle());
 		dbBlog.setBlogContent(blog.getBlogContent());
+		dbBlog.setBlogIntro(blog.getBlogIntro());
 		int result = blogMapper.updateById(dbBlog);
 		return result > 0 ? MsgUtils.getSuccessMsg() : MsgUtils.getFailedMsg();
 	}

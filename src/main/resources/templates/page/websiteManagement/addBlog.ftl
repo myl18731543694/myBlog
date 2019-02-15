@@ -8,17 +8,26 @@
 			<div class="panel-body">
 				<form id="blogInfoForm" class="form-horizontal">
 					<div class="form-group ">
-						<label for="sName" class="col-xs-3 control-label">博客标题：</label>
+						<label for="sName" class="col-xs-2 control-label">博客标题：</label>
 						<div class="col-xs-5 ">
 							<input type="text" class="form-control input-sm duiqi"
 								id="blogTitle" name="blogTitle" placeholder="博客标题">
 						</div>
 					</div>
+					<div class="form-group ">
+						<label for="sName" class="col-xs-2 control-label">博客简介：</label>
+						<div class="col-xs-5 ">
+							<textarea rows="3" cols="3" class="form-control input-sm duiqi"
+								id="blogIntro" name="blogIntro" placeholder="博客简介"></textarea>
+						</div>
+					</div>
 					<div class="form-group">
-						<label for="sLink" class="col-xs-3 control-label">博客正文：</label>
+						<label for="sLink" class="col-xs-2 control-label">博客正文：</label>
 						<div class="col-xs-8 ">
-							<textarea rows="10" cols="50" id="blogContent" name="blogContent"
-								placeholder="博客正文"></textarea>
+							<!-- <textarea rows="10" cols="50" id="blogContent" name="blogContent"
+								placeholder="博客正文"></textarea> -->
+							<!-- 加载编辑器的容器 -->
+							<script id="blogContent" name="blogContent" type="text/plain"></script>
 						</div>
 					</div>
 					<div class="form-group">
@@ -33,13 +42,30 @@
 
 </div>
 <script>
+	// 实例化编辑器
+	var ue = UE.getEditor('blogContent');
+
+	ue.ready(function() {
+		ue.setHeight(400);
+		//设置编辑器的内容
+		// ue.setContent('hello');
+		// //获取html内容，返回: <p>hello</p>
+		// var html = ue.getContent();
+		// //获取纯文本内容，返回: hello
+		// var txt = ue.getContentTxt();
+	});
+
 	/**
 	 * 修改用户信息
 	 */
 	function addBlog() {
 		$.ajax({
 			url : "/blogManager/addBlog",
-			data : $("#blogInfoForm").serialize(),
+			data : {
+				blogTitle: $("#blogTitle").val(),
+				blogIntro: $("#blogIntro").val(),
+				blogContent: ue.getContent()
+			},
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 200) {

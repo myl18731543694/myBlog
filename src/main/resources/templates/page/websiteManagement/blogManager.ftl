@@ -79,14 +79,18 @@
 				detailView : false, //是否显示父子表
 				columns : [{
 					field : 'blogTitle',
-					title : '博客标题'
+					title : '博客标题',
+					width: '30%'
 				}, {
-					field : 'blogContent',
-					title : '博客正文'
+					field : 'blogIntro',
+					title : '博客简介',
+					width: '50%'
 				}, {
 					title : '操作',
+					width: '20%',
 					formatter:function(value,row,index){
-						var str = "<button type=\"button\" onclick=\"updateBlog('"+row.uuid+"')\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span>修改</button>&nbsp;";
+						var str = "<button type=\"button\" onclick=\"slectBlog('"+row.uuid+"')\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span>查看</button>&nbsp;";
+						str += "<button type=\"button\" onclick=\"updateBlog('"+row.uuid+"')\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span>修改</button>&nbsp;";
 					    str += "<button type=\"button\" onclick=\"deleteBlog('"+row.uuid+"')\" class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-remove\"></span>删除</button>";
 					    return str;
 					}
@@ -140,6 +144,13 @@
 				}
 			});
 		}
+	}
+	
+	/**
+	 * 查看博客根据 id
+	 */
+	function slectBlog(id){
+		alert("查看功能待完成");
 	}
 	
 	/**
