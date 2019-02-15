@@ -1,3 +1,5 @@
+<#include "/common/script.ftl">
+
 <div role="tabpanel" class="tab-pane active" id="sour">
 
 	<form id="userInfoForm" class="form-horizontal">

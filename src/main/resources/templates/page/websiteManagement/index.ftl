@@ -13,19 +13,38 @@
 <script src="/websiteManagement/js/jquery.min.js"></script>
 <script src="/websiteManagement/js/bootstrap.min.js"></script>
 <link href="/websiteManagement/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="/common/bootstrap-table/bootstrap-table.js"></script>
+<link href="/common/bootstrap-table/bootstrap-table.css"
+	rel="stylesheet" />
+<script src="/common/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+
 <link rel="stylesheet" type="text/css"
 	href="/websiteManagement/css/common.css" />
 <link rel="stylesheet" type="text/css"
 	href="/websiteManagement/css/slide.css" />
-<link rel="stylesheet" type="text/css"
-	href="/websiteManagement/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="/websiteManagement/css/flat-ui.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="/websiteManagement/css/jquery.nouislider.css">
 </head>
 <script>
+	/**
+	 * 修改iframe窗口高度
+	 */
+	function changeFrameHeight() {
+		$("#rightContentIframe").height(document.documentElement.clientHeight);
+	}
+
+	/**
+	 * 当窗口大小改变时执行
+	 */
+	window.onresize = function() {
+		changeFrameHeight();
+	}
+
 	$(function() {
+		changeFrameHeight();
 		// 获取用户登录信息
 		$.ajax({
 			url : "/loginRegister/getLoginUserInfo",
@@ -45,15 +64,8 @@
 	 * 加载详情网页
 	 */
 	function loadPage(urlStr) {
-		$("#rightContent").empty();
-		$.ajax({
-			url : urlStr,
-			dataType : "html",
-			success : function(result) {
-				$("#rightContent").empty();
-				$("#rightContent").html(result);
-			}
-		})
+		changeFrameHeight();
+		$("#rightContentIframe").attr("src", urlStr);
 	}
 
 	/**
@@ -164,15 +176,13 @@
 					<a href="/loginRegister/logout">退出登录</a>
 				</p>
 			</div>
-			<!-- <div class="meun-title">账号管理</div>
-			<div onclick="loadPage('/menuManagement/menuManagement')"
-				class="meun-item meun-item-active" href="#sour" aria-controls="sour"
-				role="tab" data-toggle="tab">
-				<img src="/websiteManagement/images/icon_source.png">菜单管理
-			</div> -->
 		</div>
 		<!-- 右侧具体内容栏目 -->
-		<div id="rightContent"></div>
+		<div id="rightContent">
+			<iframe id="rightContentIframe"
+				src="/common/html/websiteManagement/blogManager"
+				style="width: 100%;"></iframe>
+		</div>
 	</div>
 	<script src="/websiteManagement/js/jquery.nouislider.js"></script>
 

@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.myblog.common.bean.Blog;
 import com.learn.myblog.common.mapper.BlogMapper;
+import com.learn.myblog.common.pojo.BootStrapTable;
 import com.learn.myblog.common.pojo.Msg;
 import com.learn.myblog.common.utils.CommonUtils;
 import com.learn.myblog.common.utils.MsgUtils;
@@ -53,12 +55,12 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		if (dbBlog == null) {
 			return MsgUtils.getFailedMsg("没有该博客。");
 		}
-		
+
 		String userId = CommonUtils.getUserId();
 		if (!userId.equals(dbBlog.getUserId())) {
 			return MsgUtils.getFailedMsg("该博客不是您发布的禁止修改。");
 		}
-		
+
 		if (dbBlog.getIsDelete() == 1) {
 			return MsgUtils.getFailedMsg("该博客已被删除。");
 		}
@@ -79,18 +81,18 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		if (dbBlog == null) {
 			return MsgUtils.getFailedMsg("没有该博客。");
 		}
-		
+
 		String userId = CommonUtils.getUserId();
 		if (!userId.equals(dbBlog.getUserId())) {
 			return MsgUtils.getFailedMsg("该博客不是您发布的禁止删除。");
 		}
-		
+
 		if (dbBlog.getIsDelete() == 1) {
 			return MsgUtils.getFailedMsg("该博客已被删除。");
 		}
-		
+
 		dbBlog.setIsDelete(1);
-		int result = blogMapper.insert(dbBlog);
+		int result = blogMapper.updateById(dbBlog);
 		return result > 0 ? MsgUtils.getSuccessMsg() : MsgUtils.getFailedMsg();
 	}
 
@@ -106,6 +108,30 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		queryWrapper.ne("isDelete", 1);
 		Blog blog = blogMapper.selectOne(queryWrapper);
 		return blog != null ? MsgUtils.getSuccessMsg(blog) : MsgUtils.getFailedMsg();
+	}
+
+	/**
+	 * 获取博客列表
+	 * 
+	 * @param currentPage 当前页码
+	 * @param pageSize    一次多少条
+	 * @return
+	 */
+	@Override
+	public BootStrapTable getBlogList(int currentPage, int pageSize, String search) {
+		currentPage = currentPage <= 0 ? 1 : currentPage;
+		Page<Blog> page = new Page<Blog>();
+		page.setSize(pageSize);
+		page.setCurrent(currentPage);
+
+		QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+		queryWrapper.ne("isDelete", 1);
+		if (!"".equals(search)) {
+			queryWrapper.like("blogTitle", search);
+		}
+		queryWrapper.orderByDesc("createTime");
+		blogMapper.selectPage(page, queryWrapper);
+		return BootStrapTable.createBootStrapTable(page);
 	}
 
 }

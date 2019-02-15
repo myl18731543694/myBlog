@@ -43,6 +43,7 @@ public class MenuManagementServiceImpl implements MenuManagementService {
 		
 		QueryWrapper<WebsiteManagementMenu> queryWrapper = new QueryWrapper<WebsiteManagementMenu>();
 		queryWrapper.orderByAsc("menuSort");
+		queryWrapper.eq("isDelete", 0);
 		// 查询所有不分页
 		List<WebsiteManagementMenu> list = websiteManagementMenuMapper.selectList(queryWrapper);
 		return MsgUtils.getSuccessMsg(list);

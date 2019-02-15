@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.learn.myblog.common.bean.Blog;
+import com.learn.myblog.common.pojo.BootStrapTable;
 import com.learn.myblog.common.pojo.Msg;
 import com.learn.myblog.coreCode.blogManager.service.BlogManagerService;
 
@@ -22,7 +23,7 @@ import com.learn.myblog.coreCode.blogManager.service.BlogManagerService;
 @Controller
 @RequestMapping("/blogManager")
 public class BlogManagerController {
-	
+
 	@Autowired
 	BlogManagerService blogManagerService;
 
@@ -47,7 +48,7 @@ public class BlogManagerController {
 	public Msg addBlog(Blog blog) {
 		return blogManagerService.addBlog(blog);
 	}
-	
+
 	/**
 	 * 修改博客
 	 * 
@@ -59,7 +60,7 @@ public class BlogManagerController {
 	public Msg editBlog(Blog blog) {
 		return blogManagerService.editBlog(blog);
 	}
-	
+
 	/**
 	 * 删除博客
 	 * 
@@ -71,7 +72,7 @@ public class BlogManagerController {
 	public Msg deleteBlog(String uuid) {
 		return blogManagerService.deleteBlog(uuid);
 	}
-	
+
 	/**
 	 * 获取指定博客
 	 * 
@@ -83,6 +84,19 @@ public class BlogManagerController {
 	public Msg getBlog(String blogId) {
 		return blogManagerService.getBlog(blogId);
 	}
-	
+
+	/**
+	 * 获取博客列表
+	 * 
+	 * @param currentPage 当前页码
+	 * @param pageSize    一次多少条
+	 * @param search      搜索标题条件
+	 * @return
+	 */
+	@RequestMapping("/getBlogList")
+	@ResponseBody
+	public BootStrapTable getBlogList(int currentPage, int pageSize, String search) {
+		return blogManagerService.getBlogList(currentPage, pageSize, search);
+	}
 
 }

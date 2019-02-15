@@ -1,3 +1,5 @@
+<#include "/common/script.ftl">
+
 <!-- 资源管理模块 -->
 <div role="tabpanel" class="tab-pane active" id="sour">
 	<div class="check-div form-inline">

@@ -4,6 +4,7 @@
 package com.learn.myblog.coreCode.blogManager.service;
 
 import com.learn.myblog.common.bean.Blog;
+import com.learn.myblog.common.pojo.BootStrapTable;
 import com.learn.myblog.common.pojo.Msg;
 
 /**
@@ -46,5 +47,14 @@ public interface BlogManagerService {
 	 * @return
 	 */
 	Msg getBlog(String blogId);
+
+	/**
+	 * 获取博客列表
+	 * 
+	 * @param currentPage 当前页码
+	 * @param pageSize    一次多少条
+	 * @return
+	 */
+	BootStrapTable getBlogList(int currentPage, int pageSize, String search);
 
 }
