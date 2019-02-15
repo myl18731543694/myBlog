@@ -1,6 +1,7 @@
 # 服务器相关配置
 server:
   port: 8080
+  max-http-header-size: 4048576
   servlet:
     context-path: /
     

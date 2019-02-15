@@ -77,7 +77,7 @@ public class BlogManagerController {
 	/**
 	 * 获取指定博客
 	 * 
-	 * @param blog 博客内容
+	 * @param blogId 博客id
 	 * @return
 	 */
 	@RequestMapping("/getBlog")
