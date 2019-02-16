@@ -3,6 +3,8 @@
  */
 package com.learn.myblog.coreCode.blogManager.serviceImpl;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		blog.setUuid(CommonUtils.getUuid());
 		blog.setUserId(CommonUtils.getUserId());
 		blog.setIsDelete(0);
+		blog.setCreateTime(LocalDateTime.now());
 		int result = blogMapper.insert(blog);
 		return result > 0 ? MsgUtils.getSuccessMsg() : MsgUtils.getFailedMsg();
 	}

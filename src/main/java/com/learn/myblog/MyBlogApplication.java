@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  *
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.learn.myblog"})
+@ComponentScan(basePackages = { "com.learn.myblog" })
 public class MyBlogApplication {
 
 	/**

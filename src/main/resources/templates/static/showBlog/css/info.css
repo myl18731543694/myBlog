@@ -27,7 +27,7 @@
 .guanzhu {  }
 .xzsm, .ffsm { width: 100%; overflow: hidden; margin: 20px 0; background: #FFF; line-height: 26px }
 .tblod { margin: 0 0 10px; display: block; position: relative }
-.tblod:after { content: ""; width: 3px; height: 26px; background: #f65a8a; left: -20px; position: absolute }
+.tblod:after { content: ""; width: 3px; height: 26px; background: #f5aa6f6; left: -20px; position: absolute }
 .xzsm ul, .ffsm ul { padding: 20px }
 .viewurl, .download { float: left; width: 30%; background: #eb6841; text-align: center; color: #fff; margin: 0 20px 20px; line-height: 30px; border-radius: 5px; }
 .download { background: #a7a7a7 }

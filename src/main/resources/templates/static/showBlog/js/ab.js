@@ -58,27 +58,27 @@ $(document).ready(function () {
 	//
  
  (function(){
-    var len = 100; // Ä¬ÈÏÏÔÊ¾µÄ×ÖÊı
-    var content = document.getElementById("content"); // content »ñÈ¡ÄÚÈİ div ¶ÔÏó
-    var text = content.innerHTML;  // text ÎªÄÚÈİ
-    var span = document.createElement("span"); // ´´½¨Ò»¸ö SPAN ±êÇ©
-    var n = document.createElement("a");  // ´´½¨Ò»¸ö A ±êÇ©
-    span.innerHTML = text.substring(0,len); // SPAN ±êÇ©µÄÄÚÈİÎª text µÄÇ° len ¸ö×Ö·û
-    n.innerHTML = text.length > len ? "...Õ¹¿ª" : ""; // ´´½¨µÄ A ±êÇ©ÄÚÈİ£¬Èç¹ûÄÚÈİ×ÖÊı´óÓÚ len£¬ÄÇÃ´Îª¡°..Õ¹¿ª¡±£¬·ñÔòÎª¿Õ
-    n.href = "javascript:void(0)"; // ÉèÖÃ A ±êÇ©µÄÁ´½ÓµØÖ·£¨ËæÒâ£©
-    n.onclick = function(){ // µã»÷ A Á´½ÓÖ´ĞĞÏÂÃæº¯Êı
-    // Èç¹û A ±êÇ©µÄÄÚÈİÎª¡°..Õ¹¿ª¡±£¬ÄÇÃ´ A ±êÇ©ÄÚÈİ±ä³É¡°ÊÕÆğ¡±£¬SPAN ±êÇ©µÄÄÚÈİÎª DIV È«²¿ÄÚÈİ£¬·ñÔòÄÚÈİÎªÇ° len ¸ö×Ö·û
-    if (n.innerHTML == "...Õ¹¿ª"){
-      n.innerHTML = "ÊÕÆğ";
+    var len = 100; // é»˜è®¤æ˜¾ç¤ºçš„å­—æ•°
+    var content = document.getElementById("content"); // content è·å–å†…å®¹ div å¯¹è±¡
+    var text = content.innerHTML;  // text ä¸ºå†…å®¹
+    var span = document.createElement("span"); // åˆ›å»ºä¸€ä¸ª SPAN æ ‡ç­¾
+    var n = document.createElement("a");  // åˆ›å»ºä¸€ä¸ª A æ ‡ç­¾
+    span.innerHTML = text.substring(0,len); // SPAN æ ‡ç­¾çš„å†…å®¹ä¸º text çš„å‰ len ä¸ªå­—ç¬¦
+    n.innerHTML = text.length > len ? "...å±•å¼€" : ""; // åˆ›å»ºçš„ A æ ‡ç­¾å†…å®¹ï¼Œå¦‚æœå†…å®¹å­—æ•°å¤§äº lenï¼Œé‚£ä¹ˆä¸ºâ€œ..å±•å¼€â€ï¼Œå¦åˆ™ä¸ºç©º
+    n.href = "javascript:void(0)"; // è®¾ç½® A æ ‡ç­¾çš„é“¾æ¥åœ°å€ï¼ˆéšæ„ï¼‰
+    n.onclick = function(){ // ç‚¹å‡» A é“¾æ¥æ‰§è¡Œä¸‹é¢å‡½æ•°
+    // å¦‚æœ A æ ‡ç­¾çš„å†…å®¹ä¸ºâ€œ..å±•å¼€â€ï¼Œé‚£ä¹ˆ A æ ‡ç­¾å†…å®¹å˜æˆâ€œæ”¶èµ·â€ï¼ŒSPAN æ ‡ç­¾çš„å†…å®¹ä¸º DIV å…¨éƒ¨å†…å®¹ï¼Œå¦åˆ™å†…å®¹ä¸ºå‰ len ä¸ªå­—ç¬¦
+    if (n.innerHTML == "...å±•å¼€"){
+      n.innerHTML = "æ”¶èµ·";
       span.innerHTML = text;
     }else{
-      n.innerHTML = "...Õ¹¿ª";
+      n.innerHTML = "...å±•å¼€";
       span.innerHTML = text.substring(0,len);
     }
    }
-    content.innerHTML = "";   // ÉèÖÃ DIV ÄÚÈİÎª¿Õ
-    content.appendChild(span); // °Ñ SPAN ÔªËØ¼Óµ½ DIV ÖĞ
-    content.appendChild(n);   // °Ñ A ÔªËØ¼Óµ½ DIV ÖĞ
+    content.innerHTML = "";   // è®¾ç½® DIV å†…å®¹ä¸ºç©º
+    content.appendChild(span); // æŠŠ SPAN å…ƒç´ åŠ åˆ° DIV ä¸­
+    content.appendChild(n);   // æŠŠ A å…ƒç´ åŠ åˆ° DIV ä¸­
   })();
 	
 	$('.navlist li').click(function(){

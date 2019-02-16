@@ -1,4 +1,14 @@
 <#include "/showBlog/common/start.ftl">
+<link href="css/base.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+<link href="css/info.css" rel="stylesheet">
+<link href="css/m.css" rel="stylesheet">
+<script src="/showBlog/js/jquery.min.js"></script>
+<script src="/showBlog/js/jquery.easyfader.min.js"></script>
+<script src="/showBlog/js/hc-sticky.js"></script>
+<script src="/showBlog/js/comm.js"></script>
+<script src="/showBlog/js/scrollReveal.js"></script>
+<#include "/showBlog/common/header.ftl">
 
 <article>
 	<main>
@@ -8,7 +18,7 @@
 			<div class="bloginfo">
 				<ul>
 					<li class="author">作者：<a href="/">杨青</a></li>
-					<li class="timer">时间：2018-5-13</li>
+					<li id="blogTime" class="timer">时间：2018-5-13</li>
 					<li class="view">4567人已阅读</li>
 				</ul>
 			</div>
@@ -46,55 +56,13 @@
 	</div>
 
 	</main>
-	<aside class="r_box">
-		<div class="fenlei">
-			<h2>文章分类</h2>
-			<ul>
-				<li><a href="/">学无止境（33）</a></li>
-				<li><a href="/">日记（19）</a></li>
-				<li><a href="/">慢生活（520）</a></li>
-				<li><a href="/">美文欣赏（40）</a></li>
-			</ul>
-		</div>
-		<div class="tuijian">
-			<h2 id="tab">
-				<a href="#" class="current">点击排行</a><a href="#">站长推荐</a>
-			</h2>
-			<div id="content">
-				<ul style="display: block;">
-					<li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-					<li><a href="/">【活动作品】柠檬绿兔小白个人博客模板</a></li>
-					<li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-					<li><a href="/">2014年度优秀个人博客评选活动</a></li>
-					<li><a href="/">你是什么人便会遇上什么人</a></li>
-					<li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-					<li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-					<li><a href="/">个人博客模板《绅士》后台管理</a></li>
-				</ul>
-				<ul>
-					<li><a href="/">个人博客，我为什么要用帝国cms？</a></li>
-					<li><a href="/">D设计师博客-一个热爱生活的设计师</a></li>
-					<li><a href="/">东轩博客，我看到了你的坚持！</a></li>
-					<li><a href="/">程序员创业，就得“豁得出去”！</a></li>
-					<li><a href="/">张建华 一个90后年轻站长！我们是对手亦是朋友！</a></li>
-					<li><a href="/">《奋斗电商》看知名微商如何做博客引流？</a></li>
-					<li><a href="/">《寻之旅》一个关于旅游，游记的个人博客</a></li>
-					<li><a href="/">【匆匆那些年】总结个人博客经历的这四年</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="guanzhu">
-			<h2>关注我</h2>
-			<ul>
-				<img src="/showBlog/images/wx.jpg">
-			</ul>
-		</div>
-
-	</aside>
+	
+	<#include "/showBlog/common/countRight.ftl">
+	
 </article>
 
 <script>
-	var blogId = "ca9f063b-40d9-4f26-8ae8-69522ff22409";
+	var blogId = "${uuid}";
 
 	$(function() {
 		$.ajax({
@@ -106,6 +74,7 @@
 			success : function(result) {
 				if (result.code == 200) {
 					$("#blogTitle").html(result.data.blogTitle);
+					$("#blogTime").html("时间：" + result.data.createTime);
 					$("#blogIntro").html(
 							"<strong>简介</strong>" + result.data.blogIntro);
 					$("#blogContent").html(result.data.blogContent);

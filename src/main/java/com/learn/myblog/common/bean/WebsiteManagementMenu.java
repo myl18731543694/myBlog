@@ -16,7 +16,7 @@ import lombok.Data;
  * @author 孟轶龙
  * @date 2019年1月24日
  */
-@TableName("websiteManagementMenu")
+@TableName("websitemanagementmenu")
 @Data
 public class WebsiteManagementMenu {
 	// 主键

@@ -18,7 +18,7 @@
 #read-more a: hover { color: #000; }
 .biji-content p { margin-bottom: 20px }
 .biji-content span { display: inline }
-.biji-content a { color: #f65a8a; display: inline-block; }
+.biji-content a { color: #5aa6f6; display: inline-block; }
 .navlist { margin: 30px 0; width: 100%; overflow: hidden; border-bottom: #e4e3e3 1px solid }
 .navlist li { display: block; font-size: 16px; line-height: 40px; float: left;  width:100px; text-align:center; }
 .navcurrent a { color: #222; display: block; position:relative;}

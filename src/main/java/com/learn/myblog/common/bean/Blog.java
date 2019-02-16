@@ -3,6 +3,8 @@
  */
 package com.learn.myblog.common.bean;
 
+import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -32,6 +34,9 @@ public class Blog {
 	
 	// 博客简介
 	private String blogIntro;
+	
+	// 创建时间
+	private LocalDateTime createTime;
 	
 	// 是否删除 1：删除
 	private int isDelete;

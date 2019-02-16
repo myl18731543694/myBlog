@@ -15,6 +15,8 @@ import java.util.HashMap;
  */
 public class TestEnmu {
 	public static void main(String[] args) {
+		String aString  = "<li><i><a href=\"/news/life/2018-06-17/873.html\"\r\n" + 
+				"					target=\"_blank\"><img src=\"images/p1.jpg\"></a></i><span>安静地做一个爱设计的女子</span></li>";
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		Type[] type = TestEnmu.class.getGenericInterfaces();
