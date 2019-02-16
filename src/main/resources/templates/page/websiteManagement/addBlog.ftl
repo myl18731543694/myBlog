@@ -21,6 +21,13 @@
 								id="blogIntro" name="blogIntro" placeholder="博客简介"></textarea>
 						</div>
 					</div>
+					<div class="form-group ">
+						<label for="sName" class="col-xs-2 control-label">显示图片：</label>
+						<div class="col-xs-5 ">
+							<textarea rows="3" cols="3" class="form-control input-sm duiqi"
+								id="blogIntro" name="blogIntro" placeholder="博客简介"></textarea>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="sLink" class="col-xs-2 control-label">博客正文：</label>
 						<div class="col-xs-8 ">
@@ -62,9 +69,9 @@
 		$.ajax({
 			url : "/blogManager/addBlog",
 			data : {
-				blogTitle: $("#blogTitle").val(),
-				blogIntro: $("#blogIntro").val(),
-				blogContent: ue.getContent()
+				blogTitle : $("#blogTitle").val(),
+				blogIntro : $("#blogIntro").val(),
+				blogContent : ue.getContent()
 			},
 			dataType : "json",
 			success : function(result) {

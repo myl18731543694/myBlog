@@ -3,6 +3,8 @@
  */
 package com.example.demo;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -15,16 +17,26 @@ import java.util.HashMap;
  */
 public class TestEnmu {
 	public static void main(String[] args) {
-		String aString  = "<li><i><a href=\"/news/life/2018-06-17/873.html\"\r\n" + 
-				"					target=\"_blank\"><img src=\"images/p1.jpg\"></a></i><span>安静地做一个爱设计的女子</span></li>";
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		String path = "E:\\myblogupload\\321231"; 
+		String fileName = "7.jpg";
 		
-		Type[] type = TestEnmu.class.getGenericInterfaces();
-		System.out.println("type.length-->" + type.length);
-		for (Type t : type) {
-			System.out.println(t.getTypeName());
-			System.out.println(t instanceof ParameterizedType);
+		File file = new File(path);
+		if (!file.exists()) {
+			file.mkdirs();
 		}
+		File targetFile = new File(path, fileName);
+
+		// 检查文件是否存在 不存在则创建文件
+		if (!targetFile.exists()) {
+			try {
+				targetFile.createNewFile();
+				System.out.println(targetFile.getPath());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
 }

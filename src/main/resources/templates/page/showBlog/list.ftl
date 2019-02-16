@@ -56,11 +56,12 @@
 					var blogTitle = element.blogTitle;
 					var blogIntro = element.blogIntro;
 					var createTime = element.createTime;
+					var blogImage = "/attachment/getFileById?uuid=" + element.blogImage;
 
 					if ((index % 4) == 1) {
 						$("#addBlogDiv").before(
 								blogStyle1(url, blogTitle, blogIntro,
-										createTime));
+										createTime, blogImage));
 					} else if ((index % 4) == 2) {
 						$("#addBlogDiv").before(
 								blogStyle2(url, blogTitle, blogIntro,
@@ -68,11 +69,11 @@
 					} else if ((index % 4) == 3) {
 						$("#addBlogDiv").before(
 								blogStyle3(url, blogTitle, blogIntro,
-										createTime));
+										createTime, blogImage));
 					} else if ((index % 4) == 0) {
 						$("#addBlogDiv").before(
 								blogStyle4(url, blogTitle, blogIntro,
-										createTime));
+										createTime, blogImage));
 					} else {
 						alert(index % 4);
 					}

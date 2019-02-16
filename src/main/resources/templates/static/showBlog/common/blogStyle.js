@@ -1,7 +1,7 @@
 /**
  * 只有一个小图片的样式
  */
-function blogStyle1(url, blogTitle, blogIntro, createTime) {
+function blogStyle1(url, blogTitle, blogIntro, createTime, blogImage) {
 	var str = "<div class=\"blogs\" data-scroll-reveal=\"enter bottom over 1s\">\r\n"
 			+ "			<h3 class=\"blogtitle\">\r\n" + "				<a href=\""
 			+ url
@@ -12,7 +12,7 @@ function blogStyle1(url, blogTitle, blogIntro, createTime) {
 			+ "			<span class=\"blogpic\"><a href=\""
 			+ url
 			+ "\" title=\"\"><img\r\n"
-			+ "					src=\"images/1.jpg\" alt=\"\"></a></span>\r\n"
+			+ "					src=\""+blogImage+"\" alt=\"\"></a></span>\r\n"
 			+ "			<p class=\"blogtext\">"
 			+ blogIntro
 			+ "</p>\r\n"
@@ -60,7 +60,7 @@ function blogStyle2(url, blogTitle, blogIntro, createTime) {
 /**
  * 三个小图片的样式
  */
-function blogStyle3(url, blogTitle, blogIntro, createTime) {
+function blogStyle3(url, blogTitle, blogIntro, createTime, blogImage) {
 	var str = "<div class=\"blogs\" data-scroll-reveal=\"enter bottom over 1s\">\r\n"
 			+ "		<h3 class=\"blogtitle\">\r\n" + "			<a href=\""
 			+ url
@@ -71,9 +71,9 @@ function blogStyle3(url, blogTitle, blogIntro, createTime) {
 			+ "		<span class=\"bplist\"><a href=\""
 			+ url
 			+ "\" title=\"\">\r\n"
-			+ "				<li><img src=\"images/2.jpg\" alt=\"\"></li>\r\n"
-			+ "				<li><img src=\"images/3.jpg\" alt=\"\"></li>\r\n"
-			+ "				<li><img src=\"images/4.jpg\" alt=\"\"></li>\r\n"
+			+ "				<li><img src=\""+blogImage+"\" alt=\"\"></li>\r\n"
+			+ "				<li><img src=\""+blogImage+"\" alt=\"\"></li>\r\n"
+			+ "				<li><img src=\""+blogImage+"\" alt=\"\"></li>\r\n"
 			+ "		</a></span>\r\n"
 			+ "		<p class=\"blogtext\">"
 			+ blogIntro
@@ -94,7 +94,7 @@ function blogStyle3(url, blogTitle, blogIntro, createTime) {
 /**
  * 一个大图片的样式
  */
-function blogStyle4(url, blogTitle, blogIntro, createTime) {
+function blogStyle4(url, blogTitle, blogIntro, createTime, blogImage) {
 	var str = "<div class=\"blogs\" data-scroll-reveal=\"enter bottom over 1s\">\r\n"
 			+ "		<h3 class=\"blogtitle\">\r\n" + "			<a href=\""
 			+ url
@@ -105,7 +105,7 @@ function blogStyle4(url, blogTitle, blogIntro, createTime) {
 			+ "		<span class=\"bigpic\"><a href=\""
 			+ url
 			+ "\" title=\"\"><img\r\n"
-			+ "				src=\"images/5.jpg\" alt=\"\"></a></span>\r\n"
+			+ "				src=\""+blogImage+"\" alt=\"\"></a></span>\r\n"
 			+ "		<p class=\"blogtext\">"
 			+ blogIntro
 			+ "</p>\r\n"

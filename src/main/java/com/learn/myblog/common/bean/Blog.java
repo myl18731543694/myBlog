@@ -35,6 +35,9 @@ public class Blog {
 	// 博客简介
 	private String blogIntro;
 	
+	// 博客显示图片地址
+	private String blogImage;
+	
 	// 创建时间
 	private LocalDateTime createTime;
 	
