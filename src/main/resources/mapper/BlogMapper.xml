@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.myblog.common.mapper.BlogMapper">
+	<select id="slectBlogClassfiyNums"
+		resultType="com.learn.myblog.common.dto.BlogClassfiyNums">
+		SELECT
+		a.uuid,
+		a.blogClassifyName,
+		Count( * ) AS nums
+		FROM
+		blogclassify AS a
+		INNER JOIN blog AS b ON a.uuid = b.blogClassfiy
+		WHERE
+		b.isDelete = 0
+		GROUP BY
+		b.blogClassfiy
+		ORDER BY
+		a.createTime
+	</select>
+	<!-- <select id="slectBlogClassfiyNums" resultMap="blogClassfiyNums"> SELECT 
+		a.uuid, a.blogClassifyName, Count( * ) as nums FROM blogclassify AS a LEFT 
+		JOIN blog AS b ON a.uuid = b.blogClassfiy GROUP BY b.blogClassfiy </select> 
+		<resultMap type="com.learn.myblog.common.dto.BlogClassfiyNums" id="blogClassfiyNums"> 
+		<id property="uuid" column="uuid" /> <result property="blogClassifyName" 
+		column="blogClassifyName" /> <result property="nums" column="nums" /> </resultMap> -->
+
+</mapper>

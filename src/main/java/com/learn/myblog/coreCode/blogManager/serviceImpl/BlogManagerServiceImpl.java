@@ -4,6 +4,7 @@
 package com.learn.myblog.coreCode.blogManager.serviceImpl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.myblog.common.bean.Blog;
+import com.learn.myblog.common.dto.BlogClassfiyNums;
 import com.learn.myblog.common.mapper.BlogMapper;
 import com.learn.myblog.common.pojo.BootStrapTable;
 import com.learn.myblog.common.pojo.Msg;
@@ -70,6 +72,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		dbBlog.setBlogTitle(blog.getBlogTitle());
 		dbBlog.setBlogContent(blog.getBlogContent());
 		dbBlog.setBlogIntro(blog.getBlogIntro());
+		dbBlog.setBlogImage(blog.getBlogImage());
 		int result = blogMapper.updateById(dbBlog);
 		return result > 0 ? MsgUtils.getSuccessMsg() : MsgUtils.getFailedMsg();
 	}
@@ -122,7 +125,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 	 * @return
 	 */
 	@Override
-	public BootStrapTable getBlogList(int currentPage, int pageSize, String search) {
+	public BootStrapTable getBlogList(int currentPage, int pageSize, String search, String blogClassfiy) {
 		currentPage = currentPage <= 0 ? 1 : currentPage;
 		Page<Blog> page = new Page<Blog>();
 		page.setSize(pageSize);
@@ -133,9 +136,23 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		if (!"".equals(search)) {
 			queryWrapper.like("blogTitle", search);
 		}
+		if (!"".equals(blogClassfiy)) {
+			queryWrapper.eq("blogClassfiy", blogClassfiy);
+		}
 		queryWrapper.orderByDesc("createTime");
 		blogMapper.selectPage(page, queryWrapper);
 		return BootStrapTable.createBootStrapTable(page);
+	}
+
+	/**
+	 * 查询博客分类的博客数量
+	 * 
+	 * @return
+	 */
+	@Override
+	public Msg slectBlogClassfiyNums() {
+		List<BlogClassfiyNums> list = blogMapper.slectBlogClassfiyNums();
+		return MsgUtils.getSuccessMsg(list);
 	}
 
 }

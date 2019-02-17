@@ -36,7 +36,7 @@ public interface UserService {
 	 * 
 	 * @return
 	 */
-	Msg getUserInfo();
+	Msg getUserInfo(String uuid);
 
 
 }

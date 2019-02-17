@@ -18,7 +18,7 @@ function blogStyle1(url, blogTitle, blogIntro, createTime, blogImage) {
 			+ "</p>\r\n"
 			+ "			<div class=\"bloginfo\">\r\n"
 			+ "				<ul>\r\n"
-			+ "					<li class=\"author\"><a href=\"/\">杨青</a></li>\r\n"
+			+ "					<li class=\"author\"><a href=\"/\">孟轶龙</a></li>\r\n"
 			+ "					<li class=\"lmname\"><a href=\"/\">学无止境</a></li>\r\n"
 			+ "					<li class=\"timer\">"
 			+ createTime
@@ -46,7 +46,7 @@ function blogStyle2(url, blogTitle, blogIntro, createTime) {
 			+ "</p>\r\n"
 			+ "		<div class=\"bloginfo\">\r\n"
 			+ "			<ul>\r\n"
-			+ "				<li class=\"author\"><a href=\"/\">杨青</a></li>\r\n"
+			+ "				<li class=\"author\"><a href=\"/\">孟轶龙</a></li>\r\n"
 			+ "				<li class=\"lmname\"><a href=\"/\">学无止境</a></li>\r\n"
 			+ "				<li class=\"timer\">"
 			+ createTime
@@ -80,7 +80,7 @@ function blogStyle3(url, blogTitle, blogIntro, createTime, blogImage) {
 			+ "</p>\r\n"
 			+ "		<div class=\"bloginfo\">\r\n"
 			+ "			<ul>\r\n"
-			+ "				<li class=\"author\"><a href=\"/\">杨青</a></li>\r\n"
+			+ "				<li class=\"author\"><a href=\"/\">孟轶龙</a></li>\r\n"
 			+ "				<li class=\"lmname\"><a href=\"/\">学无止境</a></li>\r\n"
 			+ "				<li class=\"timer\">"
 			+ createTime
@@ -111,7 +111,7 @@ function blogStyle4(url, blogTitle, blogIntro, createTime, blogImage) {
 			+ "</p>\r\n"
 			+ "		<div class=\"bloginfo\">\r\n"
 			+ "			<ul>\r\n"
-			+ "				<li class=\"author\"><a href=\"/\">杨青</a></li>\r\n"
+			+ "				<li class=\"author\"><a href=\"/\">孟轶龙</a></li>\r\n"
 			+ "				<li class=\"lmname\"><a href=\"/\">学无止境</a></li>\r\n"
 			+ "				<li class=\"timer\">"
 			+ createTime

@@ -47,7 +47,7 @@
 											var blogTitle = element.blogTitle;
 											showStr += "<li><span>"
 													+ createTime
-													+ "</span><i><a href=\""+url+"\" target=\"_blank\">"
+													+ "</span><i><a href=\""+url+"\">"
 													+ blogTitle
 													+ "</a></i></li>";
 										});

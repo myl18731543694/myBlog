@@ -26,6 +26,7 @@ public class AttachmentController {
 	AttachmentService attachmentService;
 
 	/**
+	 * 上传图片url
 	 * 
 	 * @param file
 	 * @param cropData

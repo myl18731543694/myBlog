@@ -43,5 +43,8 @@ public class Blog {
 	
 	// 是否删除 1：删除
 	private int isDelete;
+	
+	// 博客分类
+	private String blogClassfiy;
 
 }

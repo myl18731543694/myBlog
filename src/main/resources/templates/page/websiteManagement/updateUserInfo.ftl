@@ -7,6 +7,13 @@
 			<div class="panel-body">
 				<form id="userInfoForm" class="form-horizontal">
 					<div class="form-group">
+						<label for="sLink" class="col-xs-3 control-label">用户名：</label>
+						<div class="col-xs-8 ">
+							<input type="text" class="form-control input-sm duiqi"
+								id="userNick" name="userNick" placeholder="用户名">
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="sLink" class="col-xs-3 control-label">简介：</label>
 						<div class="col-xs-8 ">
 							<input type="text" class="form-control input-sm duiqi"
@@ -39,6 +46,48 @@
 						<div class="col-xs-8">
 							<input type="text" class="form-control input-sm duiqi"
 								id="userEmail" name="userEmail" placeholder="邮箱">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sOrd" class="col-xs-3 control-label">职业：</label>
+						<div class="col-xs-8">
+							<input type="text" class="form-control input-sm duiqi"
+								id="userProfession" name="userProfession" placeholder="职业">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sOrd" class="col-xs-3 control-label">工作技能：</label>
+						<div class="col-xs-8">
+							<textarea id="userSkill" name="userSkill" rows="5"
+								style="width: 100%" placeholder="工作技能"></textarea>
+						</div>
+					</div>
+					<div class="form-group ">
+						<label for="sOrd" class="col-xs-3 control-label">个人微信：</label>
+						<div class="col-xs-8">
+							<input type="hidden" class="form-control input-sm duiqi"
+								id="userWeChat" name="userWeChat" placeholder="显示图片"> <img
+								style="width: 280px; height: 280px" id="userWeChatImg"
+								name="userWeChatImg" alt="微信二维码" src="">
+
+							<div id="TCrop"></div>
+							<script type="text/javascript">
+								createUploadDom(
+										"TCrop",
+										"/attachment/uploadImag",
+										280,
+										280,
+										function(result) {
+											if (result.code == 200) {
+												$("#userWeChatImg").attr(
+														"src",
+														"/attachment/getFileById?uuid="
+																+ result.data);
+												$("#userWeChat").val(
+														result.data);
+											}
+										})
+							</script>
 						</div>
 					</div>
 					<div class="form-group">
@@ -78,6 +127,26 @@
 					} else if (result.data.userSex == 2) {
 						$("#female").click();
 					}
+
+					// 用户名
+					$("#userNick").val(result.data.userNick);
+					// 用户职业
+					$("#userProfession").val(result.data.userProfession);
+					// 工作技能
+					$("#userSkill").val(result.data.userSkill);
+					// 微信id
+					$("#userWeChat").val(result.data.userWeChat);
+					$("#userWeChatImg").attr(
+							"src",
+							"/attachment/getFileById?uuid="
+									+ result.data.userWeChat);
+
+					// 个人头像
+					$("#userHeadPortrait").val(result.data.userHeadPortrait);
+					$("#userHeadPortraitImg").attr(
+							"src",
+							"/attachment/getFileById?uuid="
+									+ result.data.userHeadPortrait);
 
 				} else {
 					alert(result.data);

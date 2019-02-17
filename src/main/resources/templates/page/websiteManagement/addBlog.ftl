@@ -24,8 +24,11 @@
 					<div class="form-group ">
 						<label for="sName" class="col-xs-2 control-label">显示图片：</label>
 						<div class="col-xs-5 ">
-							<textarea rows="3" cols="3" class="form-control input-sm duiqi"
-								id="blogIntro" name="blogIntro" placeholder="博客简介"></textarea>
+							<input type="hidden" class="form-control input-sm duiqi"
+								id="blogImage" name="blogImage"  placeholder="显示图片">
+							<img style="width: 300px;height: 196px" id="blogImageImg" name="blogImageImg" alt="请选择博客首页图片"
+								src="">
+							<#include "/websiteManagement/uploadImage.ftl">
 						</div>
 					</div>
 					<div class="form-group">
@@ -71,7 +74,8 @@
 			data : {
 				blogTitle : $("#blogTitle").val(),
 				blogIntro : $("#blogIntro").val(),
-				blogContent : ue.getContent()
+				blogContent : ue.getContent(),
+				blogImage : $("#blogImage").val()
 			},
 			dataType : "json",
 			success : function(result) {

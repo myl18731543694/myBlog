@@ -42,5 +42,6 @@ public class User {
 
 	// 是否锁定，禁止登录。1：锁定，0：不锁定
 	private int isLock;
+	
 
 }

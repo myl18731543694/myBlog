@@ -70,8 +70,8 @@ public class UserController {
 	 */
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
-	public Msg getUserInfo() {
-		return userService.getUserInfo();
+	public Msg getUserInfo(@RequestParam(required = false) String uuid) {
+		return userService.getUserInfo(uuid);
 	}
 	
 	

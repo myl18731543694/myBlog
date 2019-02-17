@@ -42,7 +42,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/loginRegister/**", "anon");
 		// 静态资源全部放开
 		filterChainDefinitionMap.put("/websiteManagement/**", "anon");
-		filterChainDefinitionMap.put("/", "authc");
+//		filterChainDefinitionMap.put("/", "authc");
 //		filterChainDefinitionMap.put("/index", "authc");// 代表着前面的url路径，用后面指定的拦截器进行拦截
 		filterChainDefinitionMap.put("/login", "anon");
 		filterChainDefinitionMap.put("/loginUser", "anon");

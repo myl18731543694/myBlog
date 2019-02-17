@@ -1,9 +1,54 @@
+/**
+ * 创建上传图片模板
+ * 
+ * @param id
+ *            div的id
+ * @param url
+ *            上传的url
+ * @param aspectRatioWidth
+ *            宽
+ * @param aspectHeight
+ *            高
+ * @param complete
+ *            完成后的方法 function(result);
+ * @returns
+ */
+function createUploadDom(id, url, aspectRatioWidth, aspectHeight, complete) {
+	Crop.init({
+		id : id,
+		/* 上传路径 */
+		url : url,
+		/* 允许上传的图片的后缀 */
+		allowsuf : [ 'jpg', 'jpeg', 'png', 'gif' ],
+		/* JCrop参数设置 */
+		cropParam : {
+			minSize : [ 0, 0 ], // 选框最小尺寸
+			maxSize : [ 0, 0 ], // 选框最大尺寸
+			aspectRatio : aspectRatioWidth / aspectHeight,
+			allowSelect : true, // 允许新选框
+			allowMove : true, // 允许选框移动
+			allowResize : true, // 允许选框缩放
+			dragEdges : true, // 允许拖动边框
+			onChange : function(c) {
+			}, // 选框改变时的事件，参数c={x, y, x1, y1, w, h}
+			onSelect : function(c) {
+			} // 选框选定时的事件，参数c={x, y, x1, y1, w, h}
+		},
+		/* 是否进行裁剪，不裁剪则按原图上传，默认进行裁剪 */
+		isCrop : true,
+		/* 图片上传完成之后的回调，无论是否成功上传 */
+		onComplete : function(data) {
+			complete(data);
+		}
+	});
+}
+
 ;(function(global, $, Crop) {
     var defaultOpt = {
         /* 整个图片选择、裁剪、上传区域的最外围包裹元素id，默认TCrop */
-        id: 'TCrop',
+        id: 'TCrop1',
         /* 上传路径 */
-        url: '',
+        url: '111',
         /* 允许上传的图片的后缀，暂时支持以下四种，其余格式图片未测试 */
         allowsuf: ['jpg', 'jpeg', 'png', 'gif'],
         /* JCrop参数设置 */
@@ -47,10 +92,11 @@
     /* 完整DOM结构 --e-- */
     function _createDom($wrap, opt) {
         var accept = 'image/' + opt.allowsuf.join(', image/');
-        // var $ifr = $('<iframe id="uploadIfr" name="uploadIfr" class="crop-hidden"></iframe>');
-        var $form = $('<form action="' + opt.url + '" enctype="multipart/form-data" method="post" target="uploadIfr"/>');
+        // var $ifr = $('<iframe id="uploadIfr" name="uploadIfr"
+		// class="crop-hidden"></iframe>');
+        var $form = $('<form id=\"uploadForm\" action="' + opt.url + '" enctype="multipart/form-data" method="post" target="uploadIfr"/>');
         var $cropDataInp = $('<input type="hidden" name="cropData">');
-        var $picker = $('<div class="crop-picker-wrap"><button class="crop-picker" type="button">选择图片</button></div>');
+        var $picker = $('<div class="crop-picker-wrap"><button class="btn btn-default  btn-sm" type="button">选择图片</button></div>');
         var $fileInp = $('<input type="file" id="file" name="file" accept="' + accept + '" class="crop-picker-file">');
         $picker.append($fileInp);
         $form.append($cropDataInp).append($picker);
@@ -63,8 +109,8 @@
         var $cropContainer = $('<div class="crop-container"/>').append($cropArea).append($cropPreviewWrap);
         $cropWrap.append($cropContainer);
         // var $saveSource = $('<div class="crop-save">上传原图</div>');
-        var $save = $('<div class="crop-save">保存</div>');
-        var $cropCancel = $('<div class="crop-cancel">取消</div>');
+        var $save = $('<div class="btn btn-default  btn-sm">保存</div>');
+        var $cropCancel = $('<div class="btn btn-default  btn-sm">取消</div>');
         var $cropOpe = $('<div class="crop-operate"/>').append($save).append($cropCancel);
 
         if(!opt.isCrop) {
@@ -127,13 +173,13 @@
         });
 
         /* iframe的load应该延迟绑定，避免首次插入文档中加载完毕时触发load事件 */
-//        window.setTimeout(function() {
-//            $ifr.load(function() {
-//                var body = this.contentWindow.document.body;
-//                var text = body.innerText;
-//                opt.onComplete(text);
-//            });
-//        }, 100);        
+// window.setTimeout(function() {
+// $ifr.load(function() {
+// var body = this.contentWindow.document.body;
+// var text = body.innerText;
+// opt.onComplete(text);
+// });
+// }, 100);
     };
 
     /* 检查文件是否符合上传条件 */
@@ -394,19 +440,26 @@
         _bind($cropObj, opt);
 
         Crop.crop = {id: opt.id, hasDom: hasDom};
+        Crop.opt = opt;
     };
 
     /* 上传 */
     function upload() {
-        var id = (Crop.crop && Crop.crop.id) || '';
-        var dom = document.getElementById(id);
-        if(!dom) {
-            return ;
-        }
-        var form = $.data(dom, 'crop').$cropObj.$form.get(0);
-        form.submit();
+    	var url = Crop.opt.url;
+    	$("#uploadForm").ajaxSubmit({
+    		url: url, /* 设置post提交到的页面 */
+            type: "post", /* 设置表单以post方法提交 */
+            dataType: "json", /* 设置返回值类型为文本 */
+            success: function (data) {
+            	Crop.opt.onComplete(data);
+            },
+            error: function (error) {
+            	console.log("上传失败");
+            }
+        });
+    	
     };
-
+    
     /* 取消裁剪 */
     function cancel() {
         var id = (Crop.crop && Crop.crop.id) || "";
@@ -429,7 +482,7 @@
             $cropWrap.remove();
         }
     };
-
+    
     if($.isEmptyObject(Crop)) {
         global.Crop = Crop = {
             init: init,

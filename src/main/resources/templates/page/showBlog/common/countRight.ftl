@@ -4,20 +4,16 @@
 		<ul>
 			<i><img src="images/4.jpg"></i>
 			<p>
-				<b>杨青</b>，一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。
+				<b id="userNick"></b>，<span id="userIntroduce"></span>
 			</p>
 		</ul>
 	</div>
 	<div class="fenlei">
 		<h2>文章分类</h2>
-		<ul>
-			<li><a href="/">学无止境（33）</a></li>
-			<li><a href="/">日记（19）</a></li>
-			<li><a href="/">慢生活（520）</a></li>
-			<li><a href="/">美文欣赏（40）</a></li>
+		<ul id="blogClassfiyUl">
 		</ul>
 	</div>
-	<div class="tuijian">
+	<div class="tuijian" style="display: none;">
 		<h2 id="tab">
 			<a href="#" class="current">点击排行</a><a href="#">站长推荐</a>
 		</h2>
@@ -47,8 +43,61 @@
 	<div class="guanzhu">
 		<h2>个人微信</h2>
 		<ul>
-			<img src="/showBlog/images/wx.jpg">
+			<img id="userWeChat" src="" alt="个人微信"
+				style="width: 280px; height: 280px;">
 		</ul>
 	</div>
 
 </aside>
+<script>
+	$(function() {
+		//用户信息
+		loadUserInfo(loginUserId, function(result) {
+			if (result.code == 200) {
+				// 博主简介
+				$("#userNick").html(result.data.userNick);
+				$("#userIntroduce").html(result.data.userIntroduce);
+
+				// 个人微信
+				$("#userWeChat").attr(
+						"src",
+						"/attachment/getFileById?uuid="
+								+ result.data.userWeChat);
+			}
+		});
+
+		// 查询博客分类的数量
+		slectBlogClassfiyNums();
+	});
+
+	/**
+	 * 查询博客分类的数量
+	 */
+	function slectBlogClassfiyNums() {
+		$
+				.ajax({
+					url : "/blogManager/slectBlogClassfiyNums",
+					dataType : "json",
+					success : function(result) {
+						if (result.code == 200) {
+							var str = "";
+							$
+									.each(
+											result.data,
+											function(index, element) {
+												str += "<li><a href=\"/common/html/showBlog/list?blogClassfiy="
+														+ element.uuid
+														+ "&blogClassfiyName="
+														+ element.blogClassifyName
+														+ "\">"
+														+ element.blogClassifyName
+														+ "（"
+														+ element.nums
+														+ "）</a></li>";
+											});
+							$("#blogClassfiyUl").append(str);
+						}
+					}
+				})
+	}
+</script>

@@ -24,7 +24,6 @@ public class UserExtend {
 	private String uuid;
 
 	// 用户地址 (暂时不维护)
-	@Deprecated
 	private String userLocation;
 
 	// 用户简介
@@ -41,5 +40,21 @@ public class UserExtend {
 
 	// 用户邮箱
 	private String userEmail;
+	
+	// 用户头像id
+	private String userHeadPortrait;
+	
+	// 用户微信的id
+	private String userWeChat;
+	
+	// 用户昵称
+	private String userNick;
+	
+	// 用户职业
+	private String userProfession;
+	
+	// 用户技能
+	private String userSkill;
+
 
 }

@@ -17,9 +17,9 @@
 			<h3 id="blogTitle" class="news_title">博客标题！</h3>
 			<div class="bloginfo">
 				<ul>
-					<li class="author">作者：<a href="/">杨青</a></li>
-					<li id="blogTime" class="timer">时间：2018-5-13</li>
-					<li class="view">4567人已阅读</li>
+					<li class="author">作者：<a href="/">孟轶龙</a></li>
+					<li id="blogTime" class="timer"></li>
+					<!-- <li class="view">4567人已阅读</li> -->
 				</ul>
 			</div>
 			<div class="news_about" id="blogIntro"></div>

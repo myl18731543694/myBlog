@@ -21,6 +21,16 @@
 								id="blogIntro" name="blogIntro" placeholder="博客简介"></textarea>
 						</div>
 					</div>
+					<div class="form-group ">
+						<label for="sName" class="col-xs-2 control-label">显示图片：</label>
+						<div class="col-xs-5 ">
+							<input type="hidden" class="form-control input-sm duiqi"
+								id="blogImage" name="blogImage"  placeholder="显示图片">
+							<img style="width: 300px;height: 196px" id="blogImageImg" name="blogImageImg" alt="请选择博客首页图片"
+								src="">
+							<#include "/websiteManagement/uploadImage.ftl">
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="sLink" class="col-xs-2 control-label">博客正文：</label>
 						<div class="col-xs-8 ">
@@ -68,6 +78,8 @@
 				if (result.code == 200) {
 					$("#blogTitle").val(result.data.blogTitle);
 					$("#blogIntro").val(result.data.blogIntro);
+					$("#blogImage").val(result.data.blogImage);
+					$("#blogImageImg").attr("src", "/attachment/getFileById?uuid=" + result.data.blogImage);
 
 					ue.ready(function() {
 						ue.setContent(result.data.blogContent);
@@ -90,7 +102,8 @@
 				uuid : blogId,
 				blogTitle : $("#blogTitle").val(),
 				blogIntro : $("#blogIntro").val(),
-				blogContent : ue.getContent()
+				blogContent : ue.getContent(),
+				blogImage : $("#blogImage").val()
 			},
 			dataType : "json",
 			success : function(result) {

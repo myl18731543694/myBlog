@@ -55,6 +55,13 @@ public interface BlogManagerService {
 	 * @param pageSize    一次多少条
 	 * @return
 	 */
-	BootStrapTable getBlogList(int currentPage, int pageSize, String search);
+	BootStrapTable getBlogList(int currentPage, int pageSize, String search, String blogClassfiy);
+
+	/**
+	 * 查询博客分类的博客数量
+	 * 
+	 * @return
+	 */
+	Msg slectBlogClassfiyNums();
 
 }

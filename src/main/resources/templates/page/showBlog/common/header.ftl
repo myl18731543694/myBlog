@@ -1,7 +1,7 @@
 <header class="header-navigation" id="header">
 	<nav>
 		<div class="logo">
-			<aid ="userName" href="/">MYL的个人博客</a>
+			<a id="userName" href="/common/html/websiteManagement/index">MYL的个人博客</a>
 		</div>
 		<h2 id="mnavh">
 			<span class="navicon"></span>
@@ -30,5 +30,22 @@
 	</nav>
 </header>
 <script>
-	
+	// 用户id
+	var loginUserId = "0de5f862-7e86-4243-81e8-5210d52f18d9";
+
+	/**
+	 * 加载指定用户信息
+	 */
+	function loadUserInfo(userUuid, compelete) {
+		$.ajax({
+			url : "/user/getUserInfo",
+			data : {
+				uuid : userUuid
+			},
+			dataType : "json",
+			success : function(result) {
+				compelete(result);
+			}
+		})
+	}
 </script>

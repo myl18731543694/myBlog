@@ -150,7 +150,7 @@
 	 * 查看博客根据 id
 	 */
 	function slectBlog(id){
-		alert("查看功能待完成");
+		window.open("/common/html/showBlog/blogDetail?uuid=" + id, "_blank");
 	}
 	
 	/**

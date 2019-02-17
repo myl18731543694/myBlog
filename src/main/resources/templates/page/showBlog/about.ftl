@@ -7,17 +7,17 @@
 <#include "/showBlog/common/header.ftl">
 
 <article>
-	<div class="photowall">
+	<!-- <div class="photowall">
 		<ul class="wall_a">
 			<li id="addPhotoWallLi" hidden></li>
 		</ul>
-	</div>
+	</div> -->
 	<div class="abox">
 		<h2>博主简介</h2>
 		<div class="biji-content" id="content">
-			孟轶龙，男。
+			<p id="userNickAndSex"></p>
 			<p></p>
-			<p>一个正在走向大神路上的菜鸡。</p>
+			<p id="userIntroduce"></p>
 		</div>
 		<div class="navlist">
 			<ul>
@@ -28,23 +28,27 @@
 		<div class="navtab">
 			<div class="navitem" style="display: block;" name="top1">
 				<div class="content">
-					<p>网名：dancesmile | 杨青</p>
-					<p>职业：Web前端设计师、网页设计</p>
-					<p>邮箱：dancesmiling@qq.com</p>
+					<p>
+						姓名：<span id="userNick"></span>
+					</p>
+					<p>
+						职业：<span id="userProfession"></span>
+					</p>
+					<p>
+						邮箱：<span id="userEmail"></span>
+					</p>
+					<p>
+						手机号：<span id="userMobile"></span>
+					</p>
 					<p>个人微信：</p>
 					<p>
-						<img src="images/grwx.png">
+						<img id="userWeChat" src="" alt="用户微信"
+							style="width: 140px; height: 140px;">
 					</p>
 				</div>
 			</div>
 			<div class="navitem" name="top2">
-				<div class="content">
-					<p class="ab_t">工作技能：</p>
-					<p>1、web前端页面的开发</p>
-					<p>2、根据产品需求，配合后端开发人员协作实现前端页面效果和功能</p>
-					<p>3、能够进行手机端和Pc端Html页面制作</p>
-					<p>4、熟练使用html5，CSS3，javascript，熟悉页面架构和布局</p>
-					<p>5、熟练使用Javascript框架</p>
+				<div class="content" id="userSkill">
 				</div>
 			</div>
 		</div>
@@ -53,15 +57,32 @@
 
 <script>
 	$(function() {
-		$("#addPhotoWallLi").before(photoWallStyle1());
+		//用户信息
+		loadUserInfo(loginUserId, function(result) {
+			if (result.code == 200) {
+				$("#userNickAndSex").html(result.data.userNick);
+				$("#userIntroduce").html(result.data.userIntroduce);
+
+				// 基本信息
+				$("#userNick").html(result.data.userNick);
+				$("#userProfession").html(result.data.userProfession);
+				$("#userEmail").html(result.data.userEmail);
+				$("#userMobile").html(result.data.userMobile);
+
+				// 工作技能
+				$("#userSkill").html(result.data.userSkill);
+				$("#userWeChat")
+						.attr(
+								"src",
+								"/attachment/getFileById?uuid="
+										+ result.data.userWeChat);
+			}
+		});
+
+		/* $("#addPhotoWallLi").before(photoWallStyle1());
 		$("#addPhotoWallLi").before(photoWallStyle2());
 		$("#addPhotoWallLi").before(photoWallStyle1());
-		$("#addPhotoWallLi").before(photoWallStyle2());
-		$("#addPhotoWallLi").before(photoWallStyle1());
-		$("#addPhotoWallLi").before(photoWallStyle2());
-		$("#addPhotoWallLi").before(photoWallStyle1());
-		$("#addPhotoWallLi").before(photoWallStyle2());
-		
+		$("#addPhotoWallLi").before(photoWallStyle2()); */
 	});
 
 	/**

@@ -26,26 +26,35 @@
 </article>
 
 <script>
+	// 搜索关键字
 	var keyboard = "${keyboard!""}";
+	// 博客分类
+	var blogClassfiy = "${blogClassfiy!""}";
+	// 博客分类名称
+	var blogClassfiyName = "${blogClassfiyName!""}";
 
 	$(function() {
 		if (keyboard != "") {
 			$("#keyboardA").html("搜索关键字：" + keyboard);
 			$("#pageContents").show();
+		} else if (blogClassfiy != ""){
+			$("#keyboardA").html("博客分类：" + blogClassfiyName);
+			$("#pageContents").show();
 		}
-		getBlogList(1, keyboard);
+		getBlogList(1, keyboard, blogClassfiy);
 	});
 
 	/**
 	 * 获取博客列表
 	 */
-	function getBlogList(currentPage, search) {
+	function getBlogList(currentPage, search, blogClassfiy) {
 		$.ajax({
 			url : "/blogManager/getBlogList",
 			data : {
 				pageSize : 10, //页面大小
 				currentPage : currentPage, //页码
-				search : search
+				search : search,
+				blogClassfiy : blogClassfiy
 			},
 			dataType : "json",
 			success : function(result) {
@@ -56,26 +65,27 @@
 					var blogTitle = element.blogTitle;
 					var blogIntro = element.blogIntro;
 					var createTime = element.createTime;
-					var blogImage = "/attachment/getFileById?uuid=" + element.blogImage;
 
-					if ((index % 4) == 1) {
-						$("#addBlogDiv").before(
-								blogStyle1(url, blogTitle, blogIntro,
-										createTime, blogImage));
-					} else if ((index % 4) == 2) {
+					if (element.blogImage == null
+							|| element.blogImage == "undefined"
+							|| element.blogImage == "") {
+						// 没有图片的文章
 						$("#addBlogDiv").before(
 								blogStyle2(url, blogTitle, blogIntro,
 										createTime));
-					} else if ((index % 4) == 3) {
-						$("#addBlogDiv").before(
-								blogStyle3(url, blogTitle, blogIntro,
-										createTime, blogImage));
-					} else if ((index % 4) == 0) {
-						$("#addBlogDiv").before(
-								blogStyle4(url, blogTitle, blogIntro,
-										createTime, blogImage));
 					} else {
-						alert(index % 4);
+						var blogImage = "/attachment/getFileById?uuid="
+								+ element.blogImage;
+
+						if ((index % 2) == 1) {
+							$("#addBlogDiv").before(
+									blogStyle1(url, blogTitle, blogIntro,
+											createTime, blogImage));
+						} else if ((index % 2) == 0) {
+							$("#addBlogDiv").before(
+									blogStyle4(url, blogTitle, blogIntro,
+											createTime, blogImage));
+						}
 					}
 
 				});
@@ -90,7 +100,6 @@
 		$("#addBlogDiv").before(blogStyle3());
 		$("#addBlogDiv").before(blogStyle4());
 	}); */
-
 </script>
 
 <#include "/showBlog/common/foot.ftl">

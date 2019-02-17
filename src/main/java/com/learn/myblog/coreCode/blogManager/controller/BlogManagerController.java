@@ -29,6 +29,18 @@ public class BlogManagerController {
 	BlogManagerService blogManagerService;
 
 	/**
+	 * 查询博客分类的博客数量
+	 * 
+	 * @param blogId 博客id
+	 * @return
+	 */
+	@RequestMapping("/slectBlogClassfiyNums")
+	@ResponseBody
+	public Msg slectBlogClassfiyNums() {
+		return blogManagerService.slectBlogClassfiyNums();
+	}
+
+	/**
 	 * 跳转到增加博客页面
 	 * 
 	 * @return /myBlog/src/main/resources/templates/page/websiteManagement/addBlog.ftl
@@ -97,8 +109,8 @@ public class BlogManagerController {
 	@RequestMapping("/getBlogList")
 	@ResponseBody
 	public BootStrapTable getBlogList(@RequestParam int currentPage, @RequestParam int pageSize,
-			@RequestParam String search) {
-		return blogManagerService.getBlogList(currentPage, pageSize, search);
+			@RequestParam String search, @RequestParam String blogClassfiy) {
+		return blogManagerService.getBlogList(currentPage, pageSize, search, blogClassfiy);
 	}
 
 }

@@ -3,10 +3,13 @@
  */
 package com.learn.myblog.common.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.learn.myblog.common.bean.Blog;
+import com.learn.myblog.common.dto.BlogClassfiyNums;
 
 /**
  * @ClassName: BlogMapper
@@ -17,4 +20,5 @@ import com.learn.myblog.common.bean.Blog;
 @Mapper
 public interface BlogMapper extends BaseMapper<Blog> {
 
+	List<BlogClassfiyNums> slectBlogClassfiyNums();
 }

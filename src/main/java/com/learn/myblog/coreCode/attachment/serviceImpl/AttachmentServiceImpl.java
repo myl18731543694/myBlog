@@ -69,8 +69,8 @@ public class AttachmentServiceImpl implements AttachmentService {
 
 			String newFilePath = CutImgUtils.cutPic(oldFilePath, outPath, x, y, w, h);
 			if (!"".equals(newFilePath)) {
-				this.saveFileToDb(newFilePath, fileOldName);
-				return MsgUtils.getSuccessMsg();
+				String uuid = this.saveFileToDb(newFilePath, fileOldName);
+				return MsgUtils.getSuccessMsg(uuid);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,20 +167,21 @@ public class AttachmentServiceImpl implements AttachmentService {
 	 * @param filePath    文件路径
 	 * @param fileOldName 文件上传前的名字
 	 */
-	protected void saveFileToDb(String filePath, String fileOldName) {
+	protected String saveFileToDb(String filePath, String fileOldName) {
 		// 拿到文件路径
 		File file = new File(filePath);
 		if (!file.exists()) {
 			// 文件不存在
-			return;
+			return "";
 		}
 
 		String fileName = file.getName();
 		String fileType = FilenameUtils.getExtension(fileName);
 		long fileSize = file.length();
 
+		String uuid = CommonUtils.getUuid();
 		Attachment attachment = new Attachment();
-		attachment.setUuid(CommonUtils.getUuid());
+		attachment.setUuid(uuid);
 		attachment.setCreateTime(LocalDateTime.now());
 		attachment.setUserId(CommonUtils.getUserId());
 		attachment.setIsDelete(0);
@@ -190,6 +191,8 @@ public class AttachmentServiceImpl implements AttachmentService {
 		attachment.setFileType(fileType);
 		attachment.setFileOldName(fileOldName);
 		attamentMapper.insert(attachment);
+		
+		return uuid;
 	}
 
 }

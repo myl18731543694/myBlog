@@ -19,11 +19,11 @@ public class HomePageController {
 	/**
 	 * 配置默认后台主页
 	 * 
-	 * @return /templates/page/websiteManagement/index.html
+	 * @return /myBlog/src/main/resources/templates/page/showBlog/index.ftl
 	 */
 	@RequestMapping("/")
 	public ModelAndView home() {
-		return new ModelAndView("websiteManagement/index");
+		return new ModelAndView("showBlog/index");
 	}
 	
 	/**

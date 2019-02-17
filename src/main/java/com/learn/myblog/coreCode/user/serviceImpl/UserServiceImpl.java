@@ -81,8 +81,10 @@ public class UserServiceImpl implements UserService {
 	 * 获取用户信息
 	 */
 	@Override
-	public Msg getUserInfo() {
-		String uuid = CommonUtils.getUserId();
+	public Msg getUserInfo(String uuid) {
+		if ("".equals(uuid) || "null".equals(uuid) || uuid == null) {
+			uuid = CommonUtils.getUserId();
+		}
 		UserExtend userExtend = userExtendMapper.selectById(uuid);
 		if (userExtend == null) {
 			return MsgUtils.getSuccessMsg();

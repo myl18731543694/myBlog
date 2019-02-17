@@ -44,7 +44,7 @@
 	<div class="blogtab">
 		<ul id="blogtab">
 			<li class="current">最新文章</li>
-			<li><a href="list.html">心得笔记</a></li>
+			<!-- <li><a href="list.html">心得笔记</a></li> -->
 		</ul>
 
 		<!-- 添加博客用的div -->
