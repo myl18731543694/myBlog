@@ -18,20 +18,21 @@
 
 <script>
 	$(function() {
-		getBlogList(1, "");
+		getBlogList(1, "", "");
 	});
 
 	/**
 	 * 获取博客列表
 	 */
-	function getBlogList(currentPage, search) {
+	function getBlogList(currentPage, search, blogClassfiy) {
 		$
 				.ajax({
 					url : "/blogManager/getBlogList",
 					data : {
 						pageSize : 10, //页面大小
 						currentPage : currentPage, //页码
-						search : search
+						search : search,
+						blogClassfiy: blogClassfiy
 					},
 					dataType : "json",
 					success : function(result) {

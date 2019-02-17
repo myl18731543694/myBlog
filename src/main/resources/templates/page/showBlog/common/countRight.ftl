@@ -2,7 +2,7 @@
 	<div class="about_me">
 		<h2>博主简介</h2>
 		<ul>
-			<i><img src="images/4.jpg"></i>
+			<!-- <i><img src="images/4.jpg"></i> -->
 			<p>
 				<b id="userNick"></b>，<span id="userIntroduce"></span>
 			</p>

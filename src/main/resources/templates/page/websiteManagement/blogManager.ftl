@@ -14,6 +14,10 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="txt_search">
 						</div>
+						<!-- <label class="control-label col-sm-1" for="txt_search">博客分类</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="txt_search">
+						</div> -->
 						<div class="col-sm-4" style="text-align: left;">
 							<button type="button" style="margin-left: 50px" id="btn_query"
 								class="btn btn-primary" onclick="refresh()">查询</button>
@@ -104,7 +108,9 @@
 				// 自定义传参数
 				pageSize : params.limit, //页面大小
 				currentPage : (params.offset / params.limit) + 1, //页码
-				search : $("#txt_search").val()
+				search : $("#txt_search").val(),
+				blogClassfiy : ""
+				// blogClassfiy : $("#blogClassfiy").val()
 			};
 			return temp;
 		};
