@@ -33,13 +33,13 @@
 			</br>
 		</div>
 
-		<div class="share">
+		<!-- <div class="share">
 			<p class="diggit">
 				<a> 赞！ </a>(<b id="diggnum">13</b>)
 			</p>
 		</div>
 
-		<!-- <div class="nextinfo">
+		<div class="nextinfo">
 			<p>
 				上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a>
 			</p>

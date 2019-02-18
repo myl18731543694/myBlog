@@ -16,13 +16,13 @@
 	<div class="banner">
 		<div id="banner" class="fader">
 			<li id="slideLi0" class="slide"><a href="/"><img
-					src="/showBlog/images/1.jpg"><span class="imginfo">个人博客!</span></a></li>
+					src=""><span class="imginfo">个人博客!</span></a></li>
 			<li id="slideLi1" class="slide"><a href="/"><img
-					src="/showBlog/images/2.jpg"><span class="imginfo">个人博客</span></a></li>
+					src=""><span class="imginfo">个人博客</span></a></li>
 			<li id="slideLi2" class="slide"><a href="/"><img
-					src="/showBlog/images/3.jpg"><span class="imginfo">个人博客！</span></a></li>
+					src=""><span class="imginfo">个人博客！</span></a></li>
 			<li id="slideLi3" class="slide"><a href="/"><img
-					src="/showBlog/images/3.jpg"><span class="imginfo">个人博客！</span></a></li>
+					src=""><span class="imginfo">个人博客！</span></a></li>
 			<div class="fader_controls" id="slideShowDiv">
 				<div class="page prev" data-target="prev">&lsaquo;</div>
 				<div class="page next" data-target="next">&rsaquo;</div>

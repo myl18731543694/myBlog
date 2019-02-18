@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,8 +38,10 @@ import com.learn.myblog.coreCode.attachment.service.AttachmentService;
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
 
-	String path = "E:\\myblogupload";
-	String outPath = "E:\\myblogupload\\cut";
+	@Value("${upload-file-path}")
+	String PATH;
+	@Value("${upload-file-img-outPath}")
+	String OUT_IMG_PATH;
 
 	@Autowired
 	HttpServletResponse response;
@@ -67,7 +70,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 			int w = new BigDecimal(jsonObject.getString("w")).intValue();
 			int h = new BigDecimal(jsonObject.getString("h")).intValue();
 
-			String newFilePath = CutImgUtils.cutPic(oldFilePath, outPath, x, y, w, h);
+			String newFilePath = CutImgUtils.cutPic(oldFilePath, OUT_IMG_PATH, x, y, w, h);
 			if (!"".equals(newFilePath)) {
 				String uuid = this.saveFileToDb(newFilePath, fileOldName);
 				return MsgUtils.getSuccessMsg(uuid);
@@ -93,12 +96,12 @@ public class AttachmentServiceImpl implements AttachmentService {
 		String fileName = uploadFileName + CommonUtils.getUuid() + "." + postfix;
 
 		// 检查文件路径是否存在
-		File filePath = new File(path);
+		File filePath = new File(PATH);
 		if (!filePath.exists()) {
 			filePath.mkdirs();
 		}
 
-		File targetFile = new File(path, fileName);
+		File targetFile = new File(PATH, fileName);
 		// 检查文件是否存在 不存在则创建文件
 		if (!targetFile.exists()) {
 			targetFile.createNewFile();
