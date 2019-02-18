@@ -9,6 +9,9 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.learn.myblog.common.dto.BlogAndUserNickAndBlogClassfiy;
+
 /**  
  * @ClassName: TestEnmu  
  * @Description: TODO(这里用一句话描述这个类的作用)  
@@ -17,26 +20,12 @@ import java.util.HashMap;
  */
 public class TestEnmu {
 	public static void main(String[] args) {
-		String path = "E:\\myblogupload\\321231"; 
-		String fileName = "7.jpg";
+		QueryWrapper<BlogAndUserNickAndBlogClassfiy> queryWrapper = new QueryWrapper<>();
+		queryWrapper.ne("isDelete", 1);
+		queryWrapper.orderByDesc("createTime");
 		
-		File file = new File(path);
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		File targetFile = new File(path, fileName);
-
-		// 检查文件是否存在 不存在则创建文件
-		if (!targetFile.exists()) {
-			try {
-				targetFile.createNewFile();
-				System.out.println(targetFile.getPath());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
+		System.out.println(queryWrapper.getParamAlias());
 		
 	}
+	
 }

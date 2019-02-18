@@ -1,6 +1,6 @@
 	<footer>
 		<p>
-			Design by <a target="_blank">MYL的个人博客</a>
+			Design by <a target="_blank">孟轶龙</a>
 			<a></a>
 		</p>
 	</footer>

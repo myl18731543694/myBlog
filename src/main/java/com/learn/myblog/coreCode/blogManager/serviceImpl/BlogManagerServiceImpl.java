@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.myblog.common.bean.Blog;
+import com.learn.myblog.common.dto.BlogAndUserNickAndBlogClassfiy;
 import com.learn.myblog.common.dto.BlogClassfiyNums;
 import com.learn.myblog.common.mapper.BlogMapper;
 import com.learn.myblog.common.pojo.BootStrapTable;
@@ -110,10 +111,10 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 	 */
 	@Override
 	public Msg getBlog(String blogId) {
-		QueryWrapper<Blog> queryWrapper = new QueryWrapper<Blog>();
-		queryWrapper.eq("uuid", blogId);
-		queryWrapper.ne("isDelete", 1);
-		Blog blog = blogMapper.selectOne(queryWrapper);
+		QueryWrapper<BlogAndUserNickAndBlogClassfiy> queryWrapper = new QueryWrapper<BlogAndUserNickAndBlogClassfiy>();
+		queryWrapper.eq("a.uuid", blogId);
+		queryWrapper.ne("a.isDelete", 1);
+		BlogAndUserNickAndBlogClassfiy blog = blogMapper.selectBlogAndUserNickAndBlogClassfiy(queryWrapper);
 		return blog != null ? MsgUtils.getSuccessMsg(blog) : MsgUtils.getFailedMsg("没有找到对应博客，可能已经被删除。");
 	}
 
@@ -127,21 +128,23 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 	@Override
 	public BootStrapTable getBlogList(int currentPage, int pageSize, String search, String blogClassfiy) {
 		currentPage = currentPage <= 0 ? 1 : currentPage;
-		Page<Blog> page = new Page<Blog>();
+		Page<BlogAndUserNickAndBlogClassfiy> page = new Page<>();
 		page.setSize(pageSize);
 		page.setCurrent(currentPage);
 
-		QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
-		queryWrapper.ne("isDelete", 1);
+		QueryWrapper<BlogAndUserNickAndBlogClassfiy> queryWrapper = new QueryWrapper<>();
+		queryWrapper.ne("a.isDelete", 1);
 		if (!"".equals(search)) {
-			queryWrapper.like("blogTitle", search);
+			queryWrapper.like("a.blogTitle", search);
 		}
 		if (!"".equals(blogClassfiy)) {
-			queryWrapper.eq("blogClassfiy", blogClassfiy);
+			queryWrapper.eq("a.blogClassfiy", blogClassfiy);
 		}
-		queryWrapper.orderByDesc("createTime");
-		blogMapper.selectPage(page, queryWrapper);
+		queryWrapper.orderByDesc("a.createTime");
+		
+		blogMapper.selectBlogAndUserNickAndBlogClassfiyList(page, queryWrapper);
 		return BootStrapTable.createBootStrapTable(page);
+
 	}
 
 	/**

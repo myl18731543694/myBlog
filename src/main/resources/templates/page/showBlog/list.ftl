@@ -60,31 +60,19 @@
 			success : function(result) {
 				var showStr = "";
 				$.each(result.rows, function(index, element) {
-					var url = "/common/html/showBlog/blogDetail?uuid="
-							+ element.uuid;
-					var blogTitle = element.blogTitle;
-					var blogIntro = element.blogIntro;
-					var createTime = element.createTime;
-
 					if (element.blogImage == null
 							|| element.blogImage == "undefined"
 							|| element.blogImage == "") {
 						// 没有图片的文章
 						$("#addBlogDiv").before(
-								blogStyle2(url, blogTitle, blogIntro,
-										createTime));
+								blogStyle2(element));
 					} else {
-						var blogImage = "/attachment/getFileById?uuid="
-								+ element.blogImage;
-
 						if ((index % 2) == 1) {
 							$("#addBlogDiv").before(
-									blogStyle1(url, blogTitle, blogIntro,
-											createTime, blogImage));
+									blogStyle1(element));
 						} else if ((index % 2) == 0) {
 							$("#addBlogDiv").before(
-									blogStyle4(url, blogTitle, blogIntro,
-											createTime, blogImage));
+									blogStyle4(element));
 						}
 					}
 

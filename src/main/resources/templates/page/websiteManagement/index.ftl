@@ -163,8 +163,9 @@
 		<div class="leftMeun" id="leftMeun">
 			<div id="logoDiv">
 				<p id="logoP">
-					<img id="logo" alt="博客后台管理"
-						src="/websiteManagement/images/logo.png"><span>博客后台管理</span>
+					<!-- <img id="logo" alt="博客后台管理"
+						src="/websiteManagement/images/logo.png"> -->
+					<span>博客后台管理</span>
 				</p>
 			</div>
 			<div id="personInfor">

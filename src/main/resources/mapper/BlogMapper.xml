@@ -3,6 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.learn.myblog.common.mapper.BlogMapper">
+	<!-- 查询博客分类对应的博客数量 -->
 	<select id="slectBlogClassfiyNums"
 		resultType="com.learn.myblog.common.dto.BlogClassfiyNums">
 		SELECT
@@ -19,11 +20,43 @@
 		ORDER BY
 		a.createTime
 	</select>
-	<!-- <select id="slectBlogClassfiyNums" resultMap="blogClassfiyNums"> SELECT 
-		a.uuid, a.blogClassifyName, Count( * ) as nums FROM blogclassify AS a LEFT 
-		JOIN blog AS b ON a.uuid = b.blogClassfiy GROUP BY b.blogClassfiy </select> 
-		<resultMap type="com.learn.myblog.common.dto.BlogClassfiyNums" id="blogClassfiyNums"> 
-		<id property="uuid" column="uuid" /> <result property="blogClassifyName" 
-		column="blogClassifyName" /> <result property="nums" column="nums" /> </resultMap> -->
+	<!-- 查询博客列表带用户昵称和分类名 列表 -->
+	<select id="selectBlogAndUserNickAndBlogClassfiyList"
+		resultType="com.learn.myblog.common.dto.BlogAndUserNickAndBlogClassfiy">
+		SELECT
+		a.*,
+		c.blogClassifyName,
+		b.userNick
+		FROM
+		blog AS a
+		LEFT
+		JOIN
+		userextend AS b ON a.userId = b.uuid
+		LEFT JOIN blogclassify AS c
+		ON
+		a.blogClassfiy = c.uuid
+		<where>
+			${ew.sqlSegment}
+		</where>
+	</select>
+	<!-- 查询博客列表带用户昵称和分类名 一个 -->
+	<select id="selectBlogAndUserNickAndBlogClassfiy"
+		resultType="com.learn.myblog.common.dto.BlogAndUserNickAndBlogClassfiy">
+		SELECT
+		a.*,
+		c.blogClassifyName,
+		b.userNick
+		FROM
+		blog AS a
+		LEFT
+		JOIN
+		userextend AS b ON a.userId = b.uuid
+		LEFT JOIN blogclassify AS c
+		ON
+		a.blogClassfiy = c.uuid
+		<where>
+			${ew.sqlSegment}
+		</where>
+	</select>
 
 </mapper>

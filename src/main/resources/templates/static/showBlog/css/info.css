@@ -11,7 +11,7 @@
 .news_about strong { color: #38485A; font-weight: 400 !important; font-size: 13px; padding-right: 8px; }
 .news_content { line-height: 24px; font-size: 14px; }
 .news_content p { overflow: hidden; padding-bottom: 4px; padding-top: 6px; word-wrap: break-word; }
-.tags a { background: #F4650E; padding: 3px 8px; margin: 0 5px 0 0; color: #fff; display: block; float: left }
+.tags a { background: #0e9df4; padding: 3px 8px; margin: 0 5px 0 0; color: #fff; display: block; float: left }
 .tags { width: 100%; overflow: hidden; clear: both }
 .infosbox img { max-width: 620px; height: auto;  }
 .share { padding: 20px; }
@@ -21,7 +21,7 @@
 /*ÎÄÕÂÆÀÂÛ*/
 .news_pl { margin: 10px 0 20px; width: 100%; overflow: hidden; background: #FFF; }
 .news_pl h2 { border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 10px; color: #000 }
-.diggit { width: 160px; margin: auto; background: #E2523A; color: #fff; box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2); border-radius: 3px; line-height: 40px; text-align: center; }
+.diggit { width: 160px; margin: auto; background: #0e9df4; color: #fff; box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2); border-radius: 3px; line-height: 40px; text-align: center; }
 .diggit a { color: #fff; }
 #diggnum { margin: 5px; }
 .guanzhu {  }

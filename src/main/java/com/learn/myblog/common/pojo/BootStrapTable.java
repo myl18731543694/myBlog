@@ -5,7 +5,7 @@ package com.learn.myblog.common.pojo;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import lombok.Data;
 
@@ -30,7 +30,7 @@ public class BootStrapTable {
 	 * @param page
 	 * @return
 	 */
-	public static <T> BootStrapTable createBootStrapTable(Page<T> page) {
+	public static <T> BootStrapTable createBootStrapTable(IPage<T> page) {
 		BootStrapTable bootStrapTable = new BootStrapTable();
 		bootStrapTable.setTotal(page.getTotal());
 		bootStrapTable.setRows(page.getRecords());

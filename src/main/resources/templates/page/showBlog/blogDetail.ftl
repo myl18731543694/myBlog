@@ -17,11 +17,12 @@
 			<h3 id="blogTitle" class="news_title">博客标题！</h3>
 			<div class="bloginfo">
 				<ul>
-					<li class="author">作者：<a href="/">孟轶龙</a></li>
+					<li class="author">作者：<a href="/common/html/showBlog/about" id="userNick">孟轶龙</a></li>
 					<li id="blogTime" class="timer"></li>
 					<!-- <li class="view">4567人已阅读</li> -->
 				</ul>
 			</div>
+			<div class="tags" id="blogClassfiyDiv"></div>
 			<div class="news_about" id="blogIntro"></div>
 			<div class="news_con" id="blogContent">正文</div>
 		</div>
@@ -38,7 +39,7 @@
 			</p>
 		</div>
 
-		<div class="nextinfo">
+		<!-- <div class="nextinfo">
 			<p>
 				上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a>
 			</p>
@@ -52,13 +53,13 @@
 			<ul>
 				<div class="gbko"></div>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 
 	</main>
-	
+
 	<#include "/showBlog/common/countRight.ftl">
-	
+
 </article>
 
 <script>
@@ -78,6 +79,16 @@
 					$("#blogIntro").html(
 							"<strong>简介</strong>" + result.data.blogIntro);
 					$("#blogContent").html(result.data.blogContent);
+					$("#userNick").html(result.data.userNick);
+
+					var blogClassfiy = result.data.blogClassfiy;
+					var blogClassifyName = result.data.blogClassifyName;
+					var url = "/common/html/showBlog/list?blogClassfiy="
+							+ blogClassfiy + "&blogClassfiyName="
+							+ blogClassifyName;
+					var str = "<a href=\""+url+"\" >" + blogClassifyName
+							+ "</a>";
+					$("#blogClassfiyDiv").html(str);
 				} else {
 					alert(result.data);
 				}

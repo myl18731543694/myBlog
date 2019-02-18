@@ -4,13 +4,14 @@
 		<ul>
 			<!-- <i><img src="images/4.jpg"></i> -->
 			<p>
-				<b id="userNick"></b>，<span id="userIntroduce"></span>
+				<a href="/common/html/showBlog/about" id="temp_userNick"></a>，<span
+					id="temp_userIntroduce"></span>
 			</p>
 		</ul>
 	</div>
 	<div class="fenlei">
 		<h2>文章分类</h2>
-		<ul id="blogClassfiyUl">
+		<ul id="temp_blogClassfiyUl">
 		</ul>
 	</div>
 	<div class="tuijian" style="display: none;">
@@ -43,7 +44,7 @@
 	<div class="guanzhu">
 		<h2>个人微信</h2>
 		<ul>
-			<img id="userWeChat" src="" alt="个人微信"
+			<img id="temp_userWeChat" src="" alt="个人微信"
 				style="width: 280px; height: 280px;">
 		</ul>
 	</div>
@@ -55,11 +56,11 @@
 		loadUserInfo(loginUserId, function(result) {
 			if (result.code == 200) {
 				// 博主简介
-				$("#userNick").html(result.data.userNick);
-				$("#userIntroduce").html(result.data.userIntroduce);
+				$("#temp_userNick").html(result.data.userNick);
+				$("#temp_userIntroduce").html(result.data.userIntroduce);
 
 				// 个人微信
-				$("#userWeChat").attr(
+				$("#temp_userWeChat").attr(
 						"src",
 						"/attachment/getFileById?uuid="
 								+ result.data.userWeChat);
@@ -95,7 +96,7 @@
 														+ element.nums
 														+ "）</a></li>";
 											});
-							$("#blogClassfiyUl").append(str);
+							$("#temp_blogClassfiyUl").append(str);
 						}
 					}
 				})
