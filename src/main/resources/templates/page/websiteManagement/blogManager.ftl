@@ -1,4 +1,4 @@
-<#include "/common/script.ftl">
+<#include "/commonPage/script.ftl">
 
 <!-- 核心显示 -->
 <div role="tabpanel" class="tab-pane active" id="sour">

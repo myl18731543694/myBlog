@@ -1,4 +1,4 @@
-<#include "/showBlog/common/start.ftl">
+<#include "/showBlog/commonPage/start.ftl">
 <link href="css/base.css" rel="stylesheet">
 <link href="css/index.css" rel="stylesheet">
 <link href="css/info.css" rel="stylesheet">
@@ -8,7 +8,7 @@
 <script src="/showBlog/js/hc-sticky.js"></script>
 <script src="/showBlog/js/comm.js"></script>
 <script src="/showBlog/js/scrollReveal.js"></script>
-<#include "/showBlog/common/header.ftl">
+<#include "/showBlog/commonPage/header.ftl">
 
 <article>
 	<main>
@@ -58,7 +58,7 @@
 
 	</main>
 
-	<#include "/showBlog/common/countRight.ftl">
+	<#include "/showBlog/commonPage/countRight.ftl">
 
 </article>
 
@@ -98,4 +98,4 @@
 	})
 </script>
 
-<#include "/showBlog/common/foot.ftl">
+<#include "/showBlog/commonPage/foot.ftl">

@@ -141,7 +141,7 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 			queryWrapper.eq("a.blogClassfiy", blogClassfiy);
 		}
 		queryWrapper.orderByDesc("a.createTime");
-		
+
 		blogMapper.selectBlogAndUserNickAndBlogClassfiyList(page, queryWrapper);
 		return BootStrapTable.createBootStrapTable(page);
 
@@ -156,6 +156,24 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 	public Msg slectBlogClassfiyNums() {
 		List<BlogClassfiyNums> list = blogMapper.slectBlogClassfiyNums();
 		return MsgUtils.getSuccessMsg(list);
+	}
+
+	/**
+	 * 获取首页博客列表
+	 */
+	@Override
+	public BootStrapTable getIndexBlogList() {
+		Page<BlogAndUserNickAndBlogClassfiy> page = new Page<>();
+		page.setSize(10);
+		page.setCurrent(1);
+
+		QueryWrapper<BlogAndUserNickAndBlogClassfiy> queryWrapper = new QueryWrapper<>();
+		queryWrapper.ne("a.isDelete", 1);
+		queryWrapper.isNotNull("a.blogImage");
+		queryWrapper.orderByDesc("a.createTime");
+
+		blogMapper.selectBlogAndUserNickAndBlogClassfiyList(page, queryWrapper);
+		return BootStrapTable.createBootStrapTable(page);
 	}
 
 }

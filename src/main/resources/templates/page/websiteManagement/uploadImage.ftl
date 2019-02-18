@@ -1,4 +1,4 @@
-<#include "/common/script.ftl">
+<#include "/commonPage/script.ftl">
 
 <div id="TCrop"></div>
 <script type="text/javascript">

@@ -26,7 +26,7 @@ import com.learn.myblog.coreCode.loginRegister.service.LoginRegisterService;
  * @date 2019年1月23日
  */
 @Controller
-@RequestMapping("loginRegister")
+@RequestMapping("/loginRegister")
 public class LoginRegisterController {
 
 	@Autowired
@@ -47,7 +47,7 @@ public class LoginRegisterController {
 	 * 
 	 * @return /myBlog/src/main/resources/templates/page/loginRegister/register.ftl
 	 */
-	@RequestMapping("/register")
+	// @RequestMapping("/register")
 	public ModelAndView register() {
 		return new ModelAndView("loginRegister/register");
 	}
@@ -70,7 +70,7 @@ public class LoginRegisterController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/registerUser")
+	// @RequestMapping("/registerUser")
 	@ResponseBody
 	public Msg registerUser(@Validated(LoginRegisterGroups.class) User user, BindingResult BindingResult) {
 		if (BindingResult.hasErrors()) {

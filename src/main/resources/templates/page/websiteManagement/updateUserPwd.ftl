@@ -1,4 +1,4 @@
-<#include "/common/script.ftl">
+<#include "/commonPage/script.ftl">
 
 <div role="tabpanel" class="tab-pane active" id="sour">
 	<div class="panel-body" style="padding-bottom: 0px;">

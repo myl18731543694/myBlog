@@ -77,11 +77,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-sm-6 col-sm-offset-3 social-login">
 						还没有账号？ <a href="/loginRegister/register"><strong>点我注册</strong></a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 
@@ -104,7 +104,7 @@
 				dataType : "json",
 				success : function(result) {
 					if (result.code == 200){
-						window.location.href = "/";
+						window.location.href = "/common/html/websiteManagement/index";
 					} else {
 						alert(result.data);
 					}

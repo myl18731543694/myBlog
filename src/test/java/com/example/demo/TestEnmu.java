@@ -20,6 +20,8 @@ import com.learn.myblog.common.dto.BlogAndUserNickAndBlogClassfiy;
  */
 public class TestEnmu {
 	public static void main(String[] args) {
+		String aString = "<li class=\"slide\"><a href=\"/\" target=\"_blank\"><img\r\n" + 
+				"					src=\"images/1.jpg\"><span class=\"imginfo\">别让这些闹心的套路，毁了你的网页设计!</span></a></li>";
 		QueryWrapper<BlogAndUserNickAndBlogClassfiy> queryWrapper = new QueryWrapper<>();
 		queryWrapper.ne("isDelete", 1);
 		queryWrapper.orderByDesc("createTime");

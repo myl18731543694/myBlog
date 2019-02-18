@@ -64,4 +64,11 @@ public interface BlogManagerService {
 	 */
 	Msg slectBlogClassfiyNums();
 
+	/**
+	 * 获取首页博客列表 带img的
+	 * 
+	 * @return
+	 */
+	BootStrapTable getIndexBlogList();
+
 }

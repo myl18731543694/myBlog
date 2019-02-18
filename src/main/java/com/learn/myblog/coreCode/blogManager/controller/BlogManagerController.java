@@ -112,5 +112,19 @@ public class BlogManagerController {
 			@RequestParam String search, @RequestParam String blogClassfiy) {
 		return blogManagerService.getBlogList(currentPage, pageSize, search, blogClassfiy);
 	}
+	
+	/**
+	 * 获取博客列表
+	 * 
+	 * @param currentPage 当前页码
+	 * @param pageSize    一次多少条
+	 * @param search      搜索标题条件
+	 * @return
+	 */
+	@RequestMapping("/getIndexBlogList")
+	@ResponseBody
+	public BootStrapTable getIndexBlogList() {
+		return blogManagerService.getIndexBlogList();
+	}
 
 }

@@ -40,16 +40,22 @@ public class ShiroConfiguration {
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 		// 静态资源全部放开
 		filterChainDefinitionMap.put("/loginRegister/**", "anon");
-		// 静态资源全部放开
 		filterChainDefinitionMap.put("/websiteManagement/**", "anon");
-//		filterChainDefinitionMap.put("/", "authc");
-//		filterChainDefinitionMap.put("/index", "authc");// 代表着前面的url路径，用后面指定的拦截器进行拦截
-		filterChainDefinitionMap.put("/login", "anon");
-		filterChainDefinitionMap.put("/loginUser", "anon");
-		filterChainDefinitionMap.put("/admin", "roles[admin]");// admin的url，要用角色是admin的才可以登录,对应的拦截器是RolesAuthorizationFilter
-		filterChainDefinitionMap.put("/edit", "perms[edit]");// 拥有edit权限的用户才有资格去访问
-		filterChainDefinitionMap.put("/druid/**", "anon");// 所有的druid请求，不需要拦截，anon对应的拦截器不会进行拦截
-		filterChainDefinitionMap.put("/**", "anon");// 所有的路径都拦截，被UserFilter拦截，这里会判断用户有没有登陆
+		filterChainDefinitionMap.put("/showBlog/**", "anon");
+		filterChainDefinitionMap.put("/commonStatic/**", "anon");
+
+		// 要放开的地址
+		filterChainDefinitionMap.put("/", "anon");// 首页
+		filterChainDefinitionMap.put("/blogManager/getBlogList", "anon");// 获取博客列表
+		filterChainDefinitionMap.put("/blogManager/getIndexBlogList", "anon");// 获取首页博客列表
+		filterChainDefinitionMap.put("/blogManager/slectBlogClassfiyNums", "anon");// 获取博客分类对应的博客数量
+		filterChainDefinitionMap.put("/user/getUserInfo", "anon");// 获取某个用户的信息
+		filterChainDefinitionMap.put("/attachment/getFileById", "anon");// 获取某个附件的信息
+		filterChainDefinitionMap.put("/common/html/showBlog/**", "anon");// 前段给人展示的blog样式
+		filterChainDefinitionMap.put("/blogManager/getBlog", "anon");// 获取指定的博客信息
+
+		// 默认所有路径都要拦截
+		filterChainDefinitionMap.put("/**", "authc");// 所有的路径都拦截，被UserFilter拦截，这里会判断用户有没有登陆
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);// 设置一个拦截器链
 
 		return bean;

@@ -1,10 +1,10 @@
-<#include "/showBlog/common/start.ftl">
+<#include "/showBlog/commonPage/start.ftl">
 <link href="/showBlog/css/base.css" rel="stylesheet">
 <link href="/showBlog/css/about.css" rel="stylesheet">
 <link href="/showBlog/css/m.css" rel="stylesheet">
 <script src="/showBlog/js/jquery.min.js"></script>
 <script src="/showBlog/js/ab.js"></script>
-<#include "/showBlog/common/header.ftl">
+<#include "/showBlog/commonPage/header.ftl">
 
 <article>
 	<!-- <div class="photowall">
@@ -108,4 +108,4 @@
 	}
 </script>
 
-<#include "/showBlog/common/foot.ftl">
+<#include "/showBlog/commonPage/foot.ftl">

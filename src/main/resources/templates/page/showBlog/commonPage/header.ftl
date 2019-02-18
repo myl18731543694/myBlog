@@ -1,7 +1,9 @@
+<script src="/commonStatic/dynamicLoad/dynamicLoad.js"></script>
 <header class="header-navigation" id="header">
 	<nav>
 		<div class="logo">
-			<a id="userName" href="/common/html/websiteManagement/index">MYL的个人博客</a>
+			<a id="userName" href="/common/html/websiteManagement/index"
+				target="_blank">孟轶龙的博客</a>
 		</div>
 		<h2 id="mnavh">
 			<span class="navicon"></span>
