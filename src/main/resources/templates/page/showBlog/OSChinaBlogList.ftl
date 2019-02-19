@@ -121,7 +121,7 @@
 				+ "</p>\r\n"
 				+ "			<div class=\"bloginfo\">\r\n"
 				+ "				<ul>\r\n"
-				+ "					<li class=\"author\"><a href=\"/common/html/showBlog/about\">"
+				+ "					<li class=\"author\"><a >"
 				+ userNick
 				+ "</a></li>\r\n"
 				+ "					<li class=\"lmname\"><a href=\""
@@ -177,7 +177,7 @@
 				+ "</p>\r\n"
 				+ "		<div class=\"bloginfo\">\r\n"
 				+ "			<ul>\r\n"
-				+ "				<li class=\"author\"><a href=\"/common/html/showBlog/about\">"
+				+ "				<li class=\"author\"><a>"
 				+ userNick
 				+ "</a></li>\r\n"
 				+ "				<li class=\"lmname\"><a href=\""

@@ -1,5 +1,6 @@
 <script src="/commonStatic/dynamicLoad/dynamicLoad.js"></script>
 <script src="/commonStatic/jquery-lazyload/jquery.lazyload.js"></script>
+<script src="/commonStatic/JSClickBubble/JSClickBubble.js"></script>
 <header class="header-navigation" id="header">
 	<nav>
 		<div class="logo">
