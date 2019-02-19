@@ -4,7 +4,6 @@
 package com.learn.myblog.coreCode.blogManager.serviceImpl;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.myblog.common.bean.Blog;
 import com.learn.myblog.common.dto.BlogAndUserNickAndBlogClassfiy;
-import com.learn.myblog.common.dto.BlogClassfiyNums;
 import com.learn.myblog.common.mapper.BlogMapper;
 import com.learn.myblog.common.pojo.BootStrapTable;
 import com.learn.myblog.common.pojo.Msg;
@@ -148,17 +146,6 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 	}
 
 	/**
-	 * 查询博客分类的博客数量
-	 * 
-	 * @return
-	 */
-	@Override
-	public Msg slectBlogClassfiyNums() {
-		List<BlogClassfiyNums> list = blogMapper.slectBlogClassfiyNums();
-		return MsgUtils.getSuccessMsg(list);
-	}
-
-	/**
 	 * 获取首页博客列表
 	 */
 	@Override
@@ -175,5 +162,4 @@ public class BlogManagerServiceImpl implements BlogManagerService {
 		blogMapper.selectBlogAndUserNickAndBlogClassfiyList(page, queryWrapper);
 		return BootStrapTable.createBootStrapTable(page);
 	}
-
 }

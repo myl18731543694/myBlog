@@ -22,13 +22,22 @@
 						</div>
 					</div>
 					<div class="form-group ">
+						<label for="sName" class="col-xs-2 control-label">博客分类：</label>
+						<div class="col-xs-5 ">
+							<select id="blogClassfiy" name="blogClassfiy"
+								class="form-control">
+								<option selected="selected" value="">请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group ">
 						<label for="sName" class="col-xs-2 control-label">显示图片：</label>
 						<div class="col-xs-5 ">
 							<input type="hidden" class="form-control input-sm duiqi"
-								id="blogImage" name="blogImage"  placeholder="显示图片">
-							<img style="width: 300px;height: 196px" id="blogImageImg" name="blogImageImg" alt="请选择博客首页图片"
-								src="">
-							<#include "/websiteManagement/uploadImage.ftl">
+								id="blogImage" name="blogImage" placeholder="显示图片"> <img
+								style="width: 300px; height: 196px" id="blogImageImg"
+								name="blogImageImg" alt="请选择博客首页图片" src=""> <#include
+							"/websiteManagement/uploadImage.ftl">
 						</div>
 					</div>
 					<div class="form-group">
@@ -52,6 +61,11 @@
 
 </div>
 <script>
+	$(function (){
+		// 加载博客分类
+		loadBlogClassfiy();
+	});
+	
 	// 实例化编辑器
 	var ue = UE.getEditor('blogContent');
 
@@ -75,12 +89,36 @@
 				blogTitle : $("#blogTitle").val(),
 				blogIntro : $("#blogIntro").val(),
 				blogContent : ue.getContent(),
-				blogImage : $("#blogImage").val()
+				blogImage : $("#blogImage").val(),
+				blogClassfiy : $("#blogClassfiy").val()
 			},
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 200) {
 					alert("发布成功");
+				} else {
+					alert(result.data);
+				}
+
+			}
+		});
+	}
+
+	/**
+	 * 加载博客分类
+	 */
+	function loadBlogClassfiy() {
+		$.ajax({
+			url : "/blogClasfiy/slectBlogClassfiy",
+			dataType : "json",
+			success : function(result) {
+				if (result.code == 200) {
+					var str = "";
+					$.each(result.data, function(index, element) {
+						str += "<option value=\""+element.uuid+"\">"
+								+ element.blogClassifyName + "</option>"
+					})
+					$("#blogClassfiy").append(str);
 				} else {
 					alert(result.data);
 				}

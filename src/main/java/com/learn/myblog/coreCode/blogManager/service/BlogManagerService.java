@@ -58,13 +58,6 @@ public interface BlogManagerService {
 	BootStrapTable getBlogList(int currentPage, int pageSize, String search, String blogClassfiy);
 
 	/**
-	 * 查询博客分类的博客数量
-	 * 
-	 * @return
-	 */
-	Msg slectBlogClassfiyNums();
-
-	/**
 	 * 获取首页博客列表 带img的
 	 * 
 	 * @return

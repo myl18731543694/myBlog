@@ -9,6 +9,8 @@ function blogStyle1(element) {
 	var blogClassfiyUrl = "/common/html/showBlog/list?blogClassfiy="
 			+ blogClassfiy + "&blogClassfiyName=" + blogClassifyName;
 
+	// var lazyLoadImage = " data-original=\""+blogImage+"\" ";
+
 	var str = "<div class=\"blogs\" data-scroll-reveal=\"enter bottom over 1s\">\r\n"
 			+ "			<h3 class=\"blogtitle\">\r\n" + "				<a href=\""
 			+ url
@@ -19,9 +21,11 @@ function blogStyle1(element) {
 			+ "			<span class=\"blogpic\"><a href=\""
 			+ url
 			+ "\" title=\"\"><img\r\n"
+			// + lazyLoadImage
 			+ "					src=\""
 			+ blogImage
-			+ "\" alt=\"\"></a></span>\r\n"
+			+ "\""
+			+ " alt=\"\"></a></span>\r\n"
 			+ "			<p class=\"blogtext\">"
 			+ element.blogIntro
 			+ "</p>\r\n"
@@ -141,6 +145,8 @@ function blogStyle4(element) {
 	var blogClassfiyUrl = "/common/html/showBlog/list?blogClassfiy="
 			+ blogClassfiy + "&blogClassfiyName=" + blogClassifyName;
 
+	// var lazyLoadImage = " data-original=\"" + blogImage + "\" ";
+
 	var str = "<div class=\"blogs\" data-scroll-reveal=\"enter bottom over 1s\">\r\n"
 			+ "		<h3 class=\"blogtitle\">\r\n" + "			<a href=\""
 			+ url
@@ -151,9 +157,11 @@ function blogStyle4(element) {
 			+ "		<span class=\"bigpic\"><a href=\""
 			+ url
 			+ "\" title=\"\"><img\r\n"
-			+ "				src=\""
+			// + lazyLoadImage
+			+ " src=\""
 			+ blogImage
-			+ "\" alt=\"\"></a></span>\r\n"
+			+ "\""
+			+ " alt=\"\"></a></span>\r\n"
 			+ "		<p class=\"blogtext\">"
 			+ element.blogIntro
 			+ "</p>\r\n"

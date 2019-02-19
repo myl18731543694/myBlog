@@ -14,10 +14,13 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="txt_search">
 						</div>
-						<!-- <label class="control-label col-sm-1" for="txt_search">博客分类</label>
+						<label class="control-label col-sm-1" for="txt_search">博客分类</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="txt_search">
-						</div> -->
+							<select id="blogClassfiy" name="blogClassfiy"
+								class="form-control">
+								<option selected="selected" value="">请选择</option>
+							</select>
+						</div>
 						<div class="col-sm-4" style="text-align: left;">
 							<button type="button" style="margin-left: 50px" id="btn_query"
 								class="btn btn-primary" onclick="refresh()">查询</button>
@@ -40,6 +43,7 @@
 	}
 
 	$(function() {
+		loadBlogClassfiy();
 
 		//1.初始化Table
 		var oTable = new TableInit();
@@ -50,6 +54,28 @@
 		oButtonInit.Init();
 
 	});
+	
+	/**
+	 * 加载博客分类
+	 */
+	function loadBlogClassfiy(){
+		$.ajax({
+			url : "/blogClasfiy/slectBlogClassfiy",
+			dataType : "json",
+			success : function(result) {
+				if (result.code == 200) {
+					var str = "";
+					$.each(result.data, function(index, element) {
+						str += "<option value=\""+element.uuid+"\">"+element.blogClassifyName+"</option>"
+					})
+					$("#blogClassfiy").append(str);
+				} else {
+					alert(result.data);
+				}
+
+			}
+		});
+	}
 
 	var TableInit = function() {
 		var oTableInit = new Object();
@@ -84,7 +110,11 @@
 				columns : [{
 					field : 'blogTitle',
 					title : '博客标题',
-					width: '30%'
+					width: '15%'
+				}, {
+					field : 'blogClassifyName',
+					title : '博客分类',
+					width: '15%'
 				}, {
 					field : 'blogIntro',
 					title : '博客简介',
@@ -109,8 +139,7 @@
 				pageSize : params.limit, //页面大小
 				currentPage : (params.offset / params.limit) + 1, //页码
 				search : $("#txt_search").val(),
-				blogClassfiy : ""
-				// blogClassfiy : $("#blogClassfiy").val()
+				blogClassfiy : $("#blogClassfiy").val()
 			};
 			return temp;
 		};

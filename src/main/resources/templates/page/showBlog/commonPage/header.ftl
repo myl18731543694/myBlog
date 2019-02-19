@@ -1,4 +1,5 @@
 <script src="/commonStatic/dynamicLoad/dynamicLoad.js"></script>
+<script src="/commonStatic/jquery-lazyload/jquery.lazyload.js"></script>
 <header class="header-navigation" id="header">
 	<nav>
 		<div class="logo">
@@ -12,6 +13,7 @@
 			<li><a href="/common/html/showBlog/index">网站首页</a></li>
 			<li><a href="/common/html/showBlog/about">关于我</a></li>
 			<li><a href="/common/html/showBlog/list">我的博客</a></li>
+			<li><a href="/common/html/showBlog/OSChinaBlogList">OSChina乱弹</a></li>
 			<li><a href="/common/html/showBlog/time">时间轴</a></li>
 		</ul>
 		<div class="searchbox">

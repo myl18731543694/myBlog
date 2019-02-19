@@ -77,7 +77,7 @@
 	function slectBlogClassfiyNums() {
 		$
 				.ajax({
-					url : "/blogManager/slectBlogClassfiyNums",
+					url : "/blogClasfiy/slectClassfiyBlogNums",
 					dataType : "json",
 					success : function(result) {
 						if (result.code == 200) {

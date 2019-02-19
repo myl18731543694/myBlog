@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.myblog.common.mapper.BlogClassfiyMapper">
+	<!-- 查询博客分类对应的博客数量 -->
+	<select id="slectClassfiyBlogNums"
+		resultType="com.learn.myblog.common.dto.BlogClassfiyNums">
+		SELECT
+		a.uuid,
+		a.blogClassifyName,
+		Count( * ) AS nums
+		FROM
+		blogclassify AS a
+		INNER JOIN blog AS b ON a.uuid = b.blogClassfiy
+		WHERE
+		b.isDelete = 0
+		GROUP BY
+		b.blogClassfiy
+		ORDER BY
+		a.createTime
+	</select>
+	
+
+</mapper>

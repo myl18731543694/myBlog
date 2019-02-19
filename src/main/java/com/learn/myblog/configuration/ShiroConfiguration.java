@@ -44,11 +44,14 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/showBlog/**", "anon");
 		filterChainDefinitionMap.put("/commonStatic/**", "anon");
 
+		// 开源中国第三方地址
+		filterChainDefinitionMap.put("/OSChinaBlog/**", "anon");
+
 		// 要放开的地址
 		filterChainDefinitionMap.put("/", "anon");// 首页
 		filterChainDefinitionMap.put("/blogManager/getBlogList", "anon");// 获取博客列表
 		filterChainDefinitionMap.put("/blogManager/getIndexBlogList", "anon");// 获取首页博客列表
-		filterChainDefinitionMap.put("/blogManager/slectBlogClassfiyNums", "anon");// 获取博客分类对应的博客数量
+		filterChainDefinitionMap.put("/blogClasfiy/slectClassfiyBlogNums", "anon");// 获取博客分类对应的博客数量
 		filterChainDefinitionMap.put("/user/getUserInfo", "anon");// 获取某个用户的信息
 		filterChainDefinitionMap.put("/attachment/getFileById", "anon");// 获取某个附件的信息
 		filterChainDefinitionMap.put("/common/html/showBlog/**", "anon");// 前段给人展示的blog样式

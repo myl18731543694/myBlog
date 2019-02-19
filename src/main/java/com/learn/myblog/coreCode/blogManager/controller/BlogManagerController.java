@@ -28,17 +28,6 @@ public class BlogManagerController {
 	@Autowired
 	BlogManagerService blogManagerService;
 
-	/**
-	 * 查询博客分类的博客数量
-	 * 
-	 * @param blogId 博客id
-	 * @return
-	 */
-	@RequestMapping("/slectBlogClassfiyNums")
-	@ResponseBody
-	public Msg slectBlogClassfiyNums() {
-		return blogManagerService.slectBlogClassfiyNums();
-	}
 
 	/**
 	 * 跳转到增加博客页面
